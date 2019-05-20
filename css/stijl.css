@@ -312,7 +312,7 @@ main h2 {
     background: white;
     -webkit-box-shadow: 0px 0px 3px #0000000d;
     box-shadow: 0px 0px 3px #0000000d;
-    padding: 0.5% 1%;
+    padding: 0.5% 1.5%;
     padding-top: 1%;
     border-radius: 4px;
     /* border: 1px solid #f1eded; */
@@ -365,6 +365,100 @@ main h2 {
 .tags a:nth-child(8) span:after {
     background: var(--blauw);
 }
+
+.stories {
+    padding: 2% 0;
+}
+
+.stories h2 {
+    text-align: left;
+    /* font-weight: 700; */
+    margin: 1% 0;
+}
+
+.stories p {
+    color: white;
+    text-align: left;
+}
+
+.stories .wrapping-content {}
+
+.story-item {
+    width: 30%;
+    float: left;
+    margin-right: 3%;
+    background-image: url(../images/traffic.jpeg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 13rem;
+    position: relative;
+    z-index: 0;
+    border-radius: 5px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+    align-items: flex-end;
+    -webkit-box-shadow: 0px 1px 5px #00000038;
+    box-shadow: 0px 1px 5px #00000038;
+
+}
+
+.stories a {
+    -webkit-transition: 0.3s ease;
+    transition: 0.3s ease;
+}
+
+.stories a:hover .story-item:before {
+    opacity: 0.45;
+
+}
+
+.story-item:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    z-index: -1;
+    border-radius: 5px;
+    opacity: 0.25;
+    -webkit-transition: 0.3s ease;
+    transition: 0.3s ease;
+}
+
+.story-item article {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 1rem;
+}
+
+
+.story-item article h2 {
+    color: white;
+    text-align: left;
+}
+
+.story-item article figure {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+}
+
+.story-item article figure img {
+    color: white;
+    height: 20px;
+    margin-right: 8%;
+    /* fill: white; */
+}
+
 
 footer {}
 
