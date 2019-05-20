@@ -24,6 +24,9 @@ h1 {
 
 }
 
+.search h2 {
+    text-align: center;
+}
 
 .wrapping-content {
     width: 100%;
@@ -143,7 +146,7 @@ main {}
 }
 
 header aside {
-    width: 25%;
+    width: 22%;
     float: left;
     height: 100vh;
     -webkit-box-shadow: 0px 0px 13px #0000000d;
@@ -209,13 +212,14 @@ header ul header div {
 
 main {
     /* overflow: hidden; */
-    width: 75%;
+    width: 78%;
     float: right;
     padding: 3em 0;
 }
 
 main .wrapping-content {
-    overflow: inherit;
+    overflow: hidden;
+    width: 90%;
 }
 
 header hr {
@@ -294,8 +298,10 @@ main h1 {
 main h2 {
     margin: 0;
     font-size: 1.7em;
+    font-weight: 700;
     margin: 2% 0;
     color: gray;
+    text-align: left;
 }
 
 .tags {}
@@ -368,6 +374,7 @@ main h2 {
 
 .stories {
     padding: 2% 0;
+    overflow: hidden;
 }
 
 .stories h2 {
@@ -379,14 +386,15 @@ main h2 {
 .stories p {
     color: white;
     text-align: left;
+    margin-bottom: 0.75em;
 }
 
 .stories .wrapping-content {}
 
 .story-item {
-    width: 30%;
+    width: 32%;
     float: left;
-    margin-right: 3%;
+    /*margin-right: 3%;*/
     background-image: url(../images/traffic.jpeg);
     background-size: cover;
     background-repeat: no-repeat;
@@ -405,7 +413,10 @@ main h2 {
     align-items: flex-end;
     -webkit-box-shadow: 0px 1px 5px #00000038;
     box-shadow: 0px 1px 5px #00000038;
+}
 
+.stories a:nth-child(odd) .story-item {
+    margin: 0 2%;
 }
 
 .stories a {
@@ -454,12 +465,108 @@ main h2 {
 
 .story-item article figure img {
     color: white;
-    height: 20px;
-    margin-right: 8%;
+    height: 15px;
+    margin-right: 21%;
     /* fill: white; */
 }
 
+.recentFiles {
+    /* width: 10rem; */
+    overflow: hidden;
+    border-radius: 4px;
+    /* height: 10rem; */
+}
+
+.recentFiles .wrapping-content {}
+
+.file-item {
+    /* margin: 1% 0; */
+    width: 11rem;
+    float: left;
+    height: 11rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    margin: 2%;
+    background: white;
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 0px 5px #0000000d;
+    box-shadow: 0px 0px 5px #0000000d;
+    /* align-items: center; */
+    position: relative;
+}
+
+.file-item article {
+    width: 15rem;
+    /* overflow: hidden; */
+    /* position: relative; */
+    /* bottom: 0; */
+    /* width: 100%; */
+    /* height: 100%; */
+    /* padding: 0 1rem; */
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.file-item article img {
+    margin-bottom: 13%;
+    width: 30%;
+}
+
+.file-item article b {
+    text-align: left;
+    color: var(--blauw);
+}
+
+.file-item article b p {
+    text-align: left;
+    color: var(--blauw);
+}
+
+.file-item article p {
+    margin: 0;
+    float: left;
+    width: 50%;
+    color: gray;
+}
+
+.recentFiles h2 {
+    text-align: left;
+}
+
+.file-item footer {
+    overflow: hidden;
+    position: absolute;
+    bottom: 0;
+    padding: 5% 8%;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    clear: both;
+    /* display: flex; */
+    /* -webkit-box-orient: vertical; */
+    /* -webkit-box-direction: normal; */
+    -ms-flex-direction: column;
+    /* flex-direction: column; */
+    /* justify-content: flex-end; */
+}
+
+.file-item h2 {
+    text-align: left;
+    margin: 0;
+    font-size: 1.3em;
+    color: black;
+    font-weight: 400;
+}
 
 footer {}
 
-footer p {}
+footer p {
+    text-align: right;
+}
