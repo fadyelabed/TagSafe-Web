@@ -1,0 +1,303 @@
+body {
+    line-height: 1.2;
+    text-align: center;
+    background-color: #F8F8F8;
+    font-family: 'Calibre Test';
+}
+
+:root {
+    --blauw: #0364E8;
+    --geel: #FCB100;
+    --groen: #53D56C;
+    --rood: #FA5555;
+    --paars: #7457ED;
+    --roos: #FF4EC8;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+h1 {
+    font-family: 'Calibre Test Medium';
+
+}
+
+
+.wrapping-content {
+    width: 100%;
+    max-width: 1440px;
+    display: block;
+    margin: 0 auto;
+    z-index: 99;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0 30px;
+    overflow: hidden;
+}
+
+@font-face {
+    font-family: 'Calibre Test';
+    src: url(../font/CalibreTest-Regular.otf);
+}
+
+@font-face {
+    font-family: 'Calibre Test Medium';
+    src: url(../font/CalibreTest-Medium.otf);
+}
+
+header {}
+
+main {}
+
+.login {
+    height: 100vh;
+    background-image: url(../images/landing.jpeg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    z-index: 2;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.login:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--blauw);
+    z-index: -1;
+    opacity: 0.95;
+}
+
+.login form {
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
+    /* flex-direction: column; */
+    width: 50%;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.login img {
+    margin: auto;
+    display: block;
+    height: 250px;
+    margin-bottom: 3%;
+}
+
+.login input {
+    width: 72%;
+    border: navajowhite;
+    padding: 2.5% 4%;
+    margin: 1% 0;
+    border-radius: 30px;
+    font-size: 1.3em;
+    font-family: 'Calibre Test';
+    color: gray;
+}
+
+.login input[type="email"] {}
+
+.login input[type="password"] {
+    margin-bottom: 3%;
+}
+
+.login input[type="submit"] {}
+
+.login .wrapping-content {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.login a {
+    color: white;
+    font-size: 2em;
+    /* margin-top: 10%; */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+.login a p {
+    font-size: 0.6em;
+    margin: 1% 0;
+    text-decoration: underline;
+}
+
+header aside {
+    width: 25%;
+    float: left;
+    height: 100vh;
+    -webkit-box-shadow: 0px 0px 13px #0000000d;
+    box-shadow: 0px 0px 13px #0000000d;
+    background: white;
+    position: fixed;
+    z-index: 999;
+}
+
+header {}
+
+header div {
+    background-color: var(--blauw);
+}
+
+header div img {
+    padding: 3rem 0;
+}
+
+header ul {
+    margin: 2rem 0;
+    /* padding: 0 4rem; */
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+header li {
+    font-size: 1.6em;
+    text-align: left;
+    margin: 7% 0;
+    margin-bottom: 6%;
+    padding: 0 4rem;
+    /* display: -webkit-box; */
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+header li a {}
+
+.active {
+    color: var(--blauw);
+}
+
+header ul span {
+    padding-right: 4%;
+}
+
+header ul span img {
+    /* margin: -3%; */
+    height: 20px;
+}
+
+header ul header div {
+    background-color: var(--blauw);
+}
+
+main {
+    /* overflow: hidden; */
+    width: 75%;
+    float: right;
+    padding: 3em 0;
+}
+
+main .wrapping-content {
+    overflow: inherit;
+}
+
+header hr {
+    border: none;
+    background: #eaeaea;
+    height: 1px;
+}
+
+.logout {}
+
+.logout img {
+    height: 20px;
+    position: absolute;
+    top: 0;
+    padding: 0;
+    right: 0;
+    padding: 3%;
+}
+
+main h1 {
+    color: var(--blauw);
+}
+
+.searchbar {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    width: 72%;
+    -webkit-box-shadow: 0px 0px 6px #00000017;
+    box-shadow: 0px 0px 6px #00000017;
+    padding: 1.5%;
+    border-radius: 5px;
+    background: white;
+    margin: auto;
+    /* overflow: hidden; */
+}
+
+.searchbar img {
+    height: 20px;
+    margin-right: 2%;
+    margin-left: 0.5%;
+}
+
+.searchbar input {
+    color: gray;
+    border: none;
+    width: 100%;
+    /* padding: 1% 0; */
+    font-family: 'Calibre Test';
+    font-size: 1.4em;
+    /* justify-content: center; */
+    /* align-items: center; */
+    /* padding: 0.5% 0; */
+    margin-top: 0.2%;
+}
+
+main h2 {
+    margin: 0;
+    font-size: 1.7em;
+    margin: 2% 0;
+    color: gray;
+}
+
+.tags {}
+
+.tags .wrapping-content {}
+
+.tags span {}
+
+.tags span:after {
+    content: '';
+    margin-left: 0.25%;
+    background: var(--blauw);
+    width: 5px;
+    height: 5px;
+    display: inline-block;
+    /* border-radius: 100%; */
+}
+
+footer {}
+
+footer p {}

@@ -1,0 +1,81 @@
+body {
+    font-family: sans-serif;
+    font-size: 12px;
+}
+
+#container {
+    margin: 0 auto;
+    width: 1200px;
+    max-width: 90%;
+}
+
+/*Text*/
+
+h1 {
+    font-size: 3.5em;
+    margin-bottom: 0.5em;
+    margin-top: 0.5em;
+}
+
+h2 {
+    font-size: 2.5em;
+    margin-bottom: 0.75em;
+}
+
+p {
+    line-height: 1.2;
+    margin-bottom: 1em;
+}
+
+strong {
+    font-weight: bold;
+}
+
+em {
+    font-style: italic;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-justify {
+    text-align: justify;
+}
+
+.underline {
+    border-bottom: 1px solid #0ff;
+}
+.mark {
+    background: #ffc;
+ }
+ 
+nav:a,
+nav:a:link,
+nav a:visited,
+nav a:hover,
+nav a:active {
+    text-decoration: none;
+    color: black;
+}
+
+nav ol,
+nav ul {
+    list-style: none;
+}
+
+/*layout*/
+
+.float-left {
+    float: left;
+}
+.clear-both {
+    clear: both;
+}
+.opvullen {
+    overflow: hidden;
+}
