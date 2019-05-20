@@ -246,10 +246,13 @@ main h1 {
     -webkit-box-pack: start;
     -ms-flex-pack: start;
     justify-content: flex-start;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
     width: 72%;
     -webkit-box-shadow: 0px 0px 6px #00000017;
     box-shadow: 0px 0px 6px #00000017;
-    padding: 1.5%;
+    padding: 0 1.5%;
     border-radius: 5px;
     background: white;
     margin: auto;
@@ -260,6 +263,15 @@ main h1 {
     height: 20px;
     margin-right: 2%;
     margin-left: 0.5%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
 }
 
 .searchbar input {
@@ -271,8 +283,12 @@ main h1 {
     font-size: 1.4em;
     /* justify-content: center; */
     /* align-items: center; */
-    /* padding: 0.5% 0; */
-    margin-top: 0.2%;
+    padding: 1.5% 0;
+    padding-top: 2%;
+    /* margin-top: 0.2%; */
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
 }
 
 main h2 {
@@ -286,16 +302,68 @@ main h2 {
 
 .tags .wrapping-content {}
 
-.tags span {}
+.tags span {
+    font-size: 1.2em;
+    text-transform: capitalize;
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
+    margin: 0.25%;
+    background: white;
+    -webkit-box-shadow: 0px 0px 3px #0000000d;
+    box-shadow: 0px 0px 3px #0000000d;
+    padding: 0.5% 1%;
+    padding-top: 1%;
+    border-radius: 4px;
+    /* border: 1px solid #f1eded; */
+}
 
 .tags span:after {
     content: '';
     margin-left: 0.25%;
     background: var(--blauw);
-    width: 5px;
-    height: 5px;
+    width: 6px;
+    height: 6px;
     display: inline-block;
+    border-radius: 20px;
+    margin-bottom: 1px;
     /* border-radius: 100%; */
+    /* display: flex; */
+    /* justify-content: center; */
+    -webkit-box-shadow: 0px !important;
+    box-shadow: 0px !important;
+}
+
+.tags span:nth-child(1):after {
+    background: var(--blauw);
+}
+
+.tags a:nth-child(2) span:after {
+    background: var(--geel);
+}
+
+.tags a:nth-child(3) span:after {
+    background: var(--groen);
+}
+
+.tags a:nth-child(4) span:after {
+    background: var(--rood);
+}
+
+.tags a:nth-child(5) span:after {
+    background: var(--paars);
+}
+
+.tags a:nth-child(6) span:after {
+    background: var(--roos);
+}
+
+.tags a:nth-child(7) span:after {
+    background: var(--groen);
+}
+
+.tags a:nth-child(8) span:after {
+    background: var(--blauw);
 }
 
 footer {}
