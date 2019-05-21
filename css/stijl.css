@@ -570,6 +570,10 @@ main h2 {
     font-size: 1em;
 }
 
+.fileViewer .recentFiles {
+    padding-top: 0;
+}
+
 .fileViewer section {
     padding: 1rem 0;
     overflow: inherit;

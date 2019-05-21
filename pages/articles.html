@@ -9,13 +9,14 @@
     <meta name="keywords" content="Erasmix,Erasmus,website,multec, TagSafe, tag safe">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="css/reset.css">
-    <link rel="stylesheet" type="text/css" href="css/master.css">
-    <link rel="stylesheet" type="text/css" href="css/stijl.css">
-    <link rel="icon" type="image/png" href="images/fav.png">
+    <link rel="stylesheet" type="text/css" href="../css/reset.css">
+    <link rel="stylesheet" type="text/css" href="../css/master.css">
+    <link rel="stylesheet" type="text/css" href="../css/stijl.css">
+    <link rel="icon" type="image/png" href="../images/fav.png">
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="../js/main.js"></script>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 <!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-app.js"></script>
@@ -40,23 +41,46 @@
 </script>
 
 <body>
-    <section class="login">
+    <header>
+        <aside>
+            <nav>
+                <div class="logo-container">
+                    <a href="#"><img src="../images/logowide.svg" alt="logo icon tagsafe"></a>
+                    <a href="../index.html"> <span class="logout"><img src="../images/logout.svg" alt="logout icon"></span></a>
+                </div>
+                <ul>
+                    <a href="home.html">
+                        <li><span><img src="../images/folder.svg" alt="foldericon"></span>Files</li>
+                    </a>
+                    <hr>
+                    <a href="articlecreator.html">
+                        <li><span><img src="../images/articlecreator.svg" alt="article creator icon"></span>Article creator</li>
+                    </a>
+                    <hr>
+                    <a href="articles.html">
+                        <li class="active"><span><img src="../images/articlesblue.svg" alt="articles icon"></span>Articles</li>
+                    </a>
+                    <hr>
+                    <a href="settings.html">
+                        <li><span><img src="../images/settings.svg" alt="settings icon"></span>Settings</li>
+                    </a>
+                    <hr>
+                </ul>
 
+            </nav>
+
+        </aside>
+    </header>
+    <main>
         <div class="wrapping-content">
-            <form id="login">
-                <img src="images/logowhite.svg" alt="logo reset">
-                <input type="email" placeholder="Email">
-                <input type="password" placeholder="Password">
-                <a href="pages/home.html" class="loginbtn" type="submit" value="inloggen">Login</a>
-                <a href="#">
-                    <p>Forgot your password?</p>
-                </a>
-            </form>
+            <section class="articles">
+
+                <h1>My Articles</h1>
+
         </div>
 
-    </section>
+    </main>
     <footer>
-
     </footer>
 </body>
 
