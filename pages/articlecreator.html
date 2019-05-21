@@ -14,34 +14,59 @@
     <link rel="stylesheet" type="text/css" href="../css/stijl.css">
     <link rel="icon" type="image/png" href="../images/fav.png">
 </head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="../js/main.js"></script>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+<script>
+    /*
+        function genPDF() {
+
+            var doc = new jsPDF();
+
+            var specialElementHandlers = {
+                '#hidediv': function(element, render) {
+                    return true;
+                }
+            };
+
+            doc.fromHTML($('#articleDocument').get(0), 20, 20, {
+                'width': 500,
+                'elementHandlers': specialElementHandlers
+            });
+
+            doc.save('Article.pdf');
+
+        }
+    */
+ $(".file-item").draggable({ handle: "img" });
+
+</script>
 
 <body>
     <header>
-        <aside>
+        <aside class="nav-collapsed">
             <nav>
                 <div class="logo-container">
-                    <a href="#"><img src="../images/logowide.svg" alt="logo icon tagsafe"></a>
+                    <a href="#"><img src="../images/logoicon.svg" alt="logo icon tagsafe"></a>
                     <a href="../index.html"> <span class="logout"><img src="../images/logout.svg" alt="logout icon"></span></a>
                 </div>
                 <ul>
                     <a href="home.html">
-                        <li class="active"><span><img src="../images/folderblue.svg" alt="foldericon"></span>Files</li>
+                        <li class="active"><span><img src="../images/folder.svg" alt="foldericon"></span></li>
                     </a>
                     <hr>
                     <a href="articlecreator.html">
-                        <li><span><img src="../images/articlecreator.svg" alt="article creator icon"></span>Article creator</li>
+                        <li><span><img src="../images/articlecreatorblue.svg" alt="article creator icon"></span></li>
                     </a>
                     <hr>
                     <a href="articles.html">
-                        <li><span><img src="../images/articles.svg" alt="articles icon"></span>Articles</li>
+                        <li><span><img src="../images/articles.svg" alt="articles icon"></span></li>
                     </a>
                     <hr>
                     <a href="settings.html">
-                        <li><span><img src="../images/settings.svg" alt="settings icon"></span>Settings</li>
+                        <li><span><img src="../images/settings.svg" alt="settings icon"></span></li>
                     </a>
                     <hr>
                 </ul>
@@ -50,7 +75,7 @@
 
         </aside>
     </header>
-    <main>
+    <main class="fileViewer">
         <div class="wrapping-content">
             <section class="search">
 
@@ -58,8 +83,9 @@
                 <div class="searchbar">
                     <img src="../images/search.svg" alt=""><input type="text" placeholder="Search for tags...">
                 </div>
-                <h2>Most recent tags:</h2>
                 <section class="tags">
+                    <h2>Most recent tags:</h2>
+
                     <a href="#"><span>accident</span></a>
                     <a href="#"><span>traffic</span></a>
                     <a href="#"><span>politics</span></a>
@@ -70,48 +96,6 @@
                 </section>
             </section>
 
-            <section class="stories">
-                <h2>Most recent stories:</h2>
-                <a href="#">
-                    <div class="story-item">
-                        <article>
-                            <h2>Traffic</h2>
-                            <p>15-05-2019</p>
-                            <figure>
-                                <img src="../images/imgwhite.png" alt="image icon">
-                                <img src="../images/noteswhite.png" alt="notition icon">
-                                <img src="../images/micwhite.png" alt="mic icon">
-                            </figure>
-                        </article>
-                    </div>
-                </a>
-                <a href="#">
-                    <div class="story-item">
-                        <article>
-                            <h2>Traffic</h2>
-                            <p>15-05-2019</p>
-                            <figure>
-                                <img src="../images/imgwhite.png" alt="image icon">
-                                <img src="../images/noteswhite.png" alt="notition icon">
-                                <img src="../images/micwhite.png" alt="mic icon">
-                            </figure>
-                        </article>
-                    </div>
-                </a>
-                <a href="#">
-                    <div class="story-item">
-                        <article>
-                            <h2>Traffic</h2>
-                            <p>15-05-2019</p>
-                            <figure>
-                                <img src="../images/imgwhite.png" alt="image icon">
-                                <img src="../images/noteswhite.png" alt="notition icon">
-                                <img src="../images/micwhite.png" alt="mic icon">
-                            </figure>
-                        </article>
-                    </div>
-                </a>
-            </section>
             <section class="recentFiles">
                 <h2>Most recent files:</h2>
 
@@ -177,13 +161,24 @@
                             <h2>Traffic.mp3</h2>
                             <b><p>1:43</p></b>
                             <p>14-06-2019</p>
-
                         </footer>
                     </article>
             </section>
             </div>
-
     </main>
+    <div class="texteditorSplit" id="articleDocument">
+        <div class="export">
+            <a href="javascript:genPDF()"><img src="../images/save.svg" alt="save icon"></a>
+            <a href=""><img src="../images/share.svg" alt="share icon"></a>
+        </div>
+        <header>
+            <h1>Workspace</h1>
+        </header>
+        <input type="text" placeholder="Title">
+        <input type="text" placeholder="Subtitle">
+        <textarea rows="4" cols="50" placeholder="This is some text...">
+</textarea>
+    </div>
     <footer>
     </footer>
 </body>
