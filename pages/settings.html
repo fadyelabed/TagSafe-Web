@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>TagSafe</title>
+    <meta name="description" content="Dit is een site gemaakt door Erasmix 4 tijdens het Integration App en web project op de Erasmus Hogeschool te Brussel">
+    <meta name="author" content="Fady Elabed">
+    <meta name="keywords" content="Erasmix,Erasmus,website,multec, TagSafe, tag safe">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../css/reset.css">
+    <link rel="stylesheet" type="text/css" href="../css/master.css">
+    <link rel="stylesheet" type="text/css" href="../css/stijl.css">
+    <link rel="icon" type="image/png" href="../images/fav.png">
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="../js/main.js"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#config-web-app -->
+
+<script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyD3-3yCC41HWr-AJYdXkPDSfxD6QEFii5Y",
+        authDomain: "tagsafe-e1bf4.firebaseapp.com",
+        databaseURL: "https://tagsafe-e1bf4.firebaseio.com",
+        projectId: "tagsafe-e1bf4",
+        storageBucket: "tagsafe-e1bf4.appspot.com",
+        messagingSenderId: "719548532308",
+        appId: "1:719548532308:web:ff7914623e41b34b"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+</script>
+
+<body>
+    <header>
+        <aside>
+            <nav>
+                <div class="logo-container">
+                    <a href="#"><img src="../images/logowide.svg" alt="logo icon tagsafe"></a>
+                    <a href="../index.html"> <span class="logout"><img src="../images/logout.svg" alt="logout icon"></span></a>
+                </div>
+                <ul>
+                    <a href="home.html">
+                        <li><span><img src="../images/folder.svg" alt="foldericon"></span>Files</li>
+                    </a>
+                    <hr>
+                    <a href="articlecreator.html">
+                        <li><span><img src="../images/articlecreator.svg" alt="article creator icon"></span>Article creator</li>
+                    </a>
+                    <hr>
+                    <a href="articles.html">
+                        <li class="active"><span><img src="../images/articlesblue.svg" alt="articles icon"></span>Articles</li>
+                    </a>
+                    <hr>
+                    <a href="settings.html">
+                        <li><span><img src="../images/settings.svg" alt="settings icon"></span>Settings</li>
+                    </a>
+                    <hr>
+                </ul>
+
+            </nav>
+
+        </aside>
+    </header>
+    <main>
+        <div class="wrapping-content">
+            <section class="settings">
+
+                <h1>Settings</h1>
+
+                <table>
+                    <tr>
+                        <td>someone@example.com</td>
+                        <td><a href="#">Change mail</a></td>
+                    </tr>
+                    <tr>
+                        <td>Centro comercial Moctezuma</td>
+                        <td>Francisco Chang</td>
+                    </tr>
+                    <tr>
+                        <td>Ernst Handel</td>
+                        <td>Roland Mendel</td>
+                    </tr>
+                    <tr>
+                        <td>Island Trading</td>
+                        <td>Helen Bennett</td>
+                    </tr>
+                </table>
+
+        </div>
+
+    </main>
+    <footer>
+    </footer>
+</body>
+
+</html>

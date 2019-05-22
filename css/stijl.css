@@ -60,7 +60,7 @@ header {}
 main {}
 
 .fileViewer {
-    width: 43%;
+    width: 46%;
     float: left;
     margin: 0;
     margin-left: 6%;
@@ -685,7 +685,7 @@ main h2 {
     background: white;
     height: 100vh;
     border-left: 1px solid #e6e6e6;
-    width: 51%;
+    width: 48%;
     float: left;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
@@ -762,6 +762,7 @@ main h2 {
     padding: 2% 0;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
+    resize: none;
 }
 
 .texteditorSplit header {}
@@ -787,6 +788,38 @@ main h2 {
     opacity: 1;
 
 }
+
+.settings {}
+
+.settings table {
+    width: 100%;
+    margin: auto;
+}
+
+.settings tr {
+    /* text-align: left; */
+    padding: -2% 0;
+}
+
+.settings td {
+    /* text-align: right; */
+    padding: 4% 0;
+    padding-bottom: 3%;
+    font-size: 1.2em;
+    border-bottom: 1px solid #eaeaea;
+    text-align: left;
+}
+
+.settings td:nth-child(2) {
+    text-align: right;
+}
+
+.settings a {
+    -webkit-transition: 0.3s ease;
+    transition: 0.3s ease;
+}
+
+.settings a:hover {}
 
 footer {}
 
