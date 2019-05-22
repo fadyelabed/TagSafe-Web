@@ -7,26 +7,35 @@ function login() {
     //  window.alert(userEmail + " " + userPassword);
 
     firebase.auth().signInWithEmailAndPassword(userEmail, userPassword).catch(function (error) {
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            console.log(errorMessage);
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log(errorMessage);
     });
-    
-        
-firebase.auth().onAuthStateChanged(function (user) {
-    if (user) {
-        console.log("successfully logged in");
-        window.location.href = "pages/home.html";
-        console.log(user);
 
-    } else {
-        console.log("no success");
+    //Login methode
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+            console.log("successfully logged in");
+            window.location.href = "pages/home.html";
+            console.log(user);
 
-    }
-});
+        } else {
+            console.log("no success");
+
+        }
+    });
 
 };
+
+//Logout methode
+function logout(){
+    firebase.auth().signOut();
+    console.log(logout);
+    window.location.href = "../index.html";
+
+};
+
 
 $(function () {
     $(".logonav").mouseenter(function () {

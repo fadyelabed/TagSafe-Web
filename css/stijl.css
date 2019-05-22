@@ -156,6 +156,12 @@ main {}
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
+    transition: 0.3s ease;
+    cursor: pointer;
+}
+.login a:hover {
+    letter-spacing: 0.5px;
+    opacity: 0.8;
 }
 
 .login a p {
@@ -185,7 +191,7 @@ main {}
     padding-right: 0;
 }
 
-.nav-collapsed .logout img {
+.nav-collapsed #logout img {
     padding: 10%;
 }
 
@@ -291,9 +297,9 @@ header hr {
     margin: 0;
 }
 
-.logout {}
 
-.logout img {
+
+#logout img {
     height: 20px;
     position: absolute;
     top: 0;
