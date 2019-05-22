@@ -25,6 +25,15 @@ function login() {
 
         }
     });
+    
+    var db = firebase.firestore();
+
+db.collection("tags").get().then(function(querySnapshot) {
+    querySnapshot.forEach(function(doc) {
+        // doc.data() is never undefined for query doc snapshots
+        console.log(doc.id, " => ", doc.data());
+    });
+});
 
 };
 
@@ -35,6 +44,8 @@ function logout(){
     window.location.href = "../index.html";
 
 };
+
+
 
 
 $(function () {
