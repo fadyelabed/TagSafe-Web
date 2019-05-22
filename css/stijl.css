@@ -374,16 +374,19 @@ main h2 {
 }
 
 .tags {}
+.tags a {}
 
 .tags .wrapping-content {}
 
-.tags span {
+.tags p {
     font-size: 1.2em;
+    /* display: initial; */
+    float: left;
     text-transform: capitalize;
     /* display: flex; */
     /* justify-content: center; */
     /* align-items: center; */
-    margin: 0.25%;
+    margin: 0.5%;
     background: white;
     -webkit-box-shadow: 0px 0px 3px #0000000d;
     box-shadow: 0px 0px 3px #0000000d;
@@ -393,15 +396,17 @@ main h2 {
     /* border: 1px solid #f1eded; */
 }
 
-.tags span:after {
+.tags p:after {
     content: '';
-    margin-left: 0.25%;
+    box-sizing: border-box;
     background: var(--blauw);
     width: 6px;
     height: 6px;
     display: inline-block;
     border-radius: 20px;
+    /* padding: 1px; */
     margin-bottom: 1px;
+    margin-left: 0%;
     /* border-radius: 100%; */
     /* display: flex; */
     /* justify-content: center; */
@@ -409,41 +414,42 @@ main h2 {
     box-shadow: 0px !important;
 }
 
-.tags span:nth-child(1):after {
+.tags p:nth-child(1):after {
     background: var(--blauw);
 }
 
-.tags a:nth-child(2) span:after {
+.tags a:nth-child(2) p:after {
     background: var(--geel);
 }
 
-.tags a:nth-child(3) span:after {
+.tags a:nth-child(3) p:after {
     background: var(--groen);
 }
 
-.tags a:nth-child(4) span:after {
+.tags a:nth-child(4) p:after {
     background: var(--rood);
 }
 
-.tags a:nth-child(5) span:after {
+.tags a:nth-child(5) p:after {
     background: var(--paars);
 }
 
-.tags a:nth-child(6) span:after {
+.tags a:nth-child(6) p:after {
     background: var(--roos);
 }
 
-.tags a:nth-child(7) span:after {
+.tags a:nth-child(7) p:after {
     background: var(--groen);
 }
 
-.tags a:nth-child(8) span:after {
+.tags a:nth-child(8) p:after {
     background: var(--blauw);
 }
 
 .stories {
     padding: 2% 0;
     overflow: hidden;
+    clear: both;
 }
 
 .stories h2 {
@@ -552,12 +558,12 @@ main h2 {
     margin-left: 0;
 }
 
-.fileViewer .tags span:after {
+.fileViewer .tags div:after {
     width: 4px;
     height: 4px;
 }
 
-.fileViewer .tags span {
+.fileViewer .tags div {
     font-size: 1em;
 }
 
