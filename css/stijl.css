@@ -200,6 +200,23 @@ header aside {
     z-index: 999;
 }
 
+aside footer {
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    margin: auto;
+    -webkit-transform: translate(-50%, 50%);
+    transform: translate(-50%, 50%);
+    left: 50%;
+    width: 100%;
+    margin-bottom: 4%;
+}
+
+aside footer p {
+    text-align: center;
+    color: gray;
+}
+
 header {}
 
 header div {
@@ -389,7 +406,7 @@ main h2 {
 
 .tags span:after {
     content: '';
-    margin-left: 0.25%;
+    margin-left: 0.5%;
     background: var(--blauw);
     width: 6px;
     height: 6px;
@@ -476,6 +493,17 @@ main h2 {
     align-items: flex-end;
     -webkit-box-shadow: 0px 1px 5px #00000038;
     box-shadow: 0px 1px 5px #00000038;
+}
+
+.stories a:nth-child(2) .story-item {}
+
+.stories a:nth-child(3) .story-item {
+    background-image: url(../images/protest.jpeg);
+}
+
+.stories a:nth-child(4) .story-item {
+    background-image: url(../images/fire.jpeg);
+
 }
 
 .stories a:nth-child(odd) .story-item {
@@ -789,6 +817,32 @@ main h2 {
 
 }
 
+.articles {}
+
+.articles div {
+    float: left;
+    width: 30%;
+    margin: 0 1.5%;
+}
+
+.articles p {
+    text-align: left;
+    font-size: 1.2em;
+    margin-bottom: 2%;
+    color: #828282;
+}
+
+.articles article {
+    -webkit-box-shadow: 0px 0px 6px #0000001a;
+    box-shadow: 0px 0px 6px #0000001a;
+    border-radius: 5px;
+}
+
+.articles article img {
+    width: 100%;
+    border-radius: 4px;
+}
+
 .settings {}
 
 .settings table {
@@ -817,9 +871,20 @@ main h2 {
 .settings a {
     -webkit-transition: 0.3s ease;
     transition: 0.3s ease;
+    border: 1px solid var(--blauw);
+    color: var(--blauw);
+    padding: 4% 4%;
+    padding-bottom: 2.8%;
+    /* font-weight: 700; */
+    /* border: none; */
+    border-radius: 3px;
 }
 
-.settings a:hover {}
+.settings a:hover {
+    letter-spacing: 0.5px;
+    background: var(--blauw);
+    color: white;
+}
 
 footer {}
 
