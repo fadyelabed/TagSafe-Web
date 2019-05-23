@@ -4,14 +4,14 @@ $(function () {
 
     var section = $(".tags")
     var tagsRef = db.collection("tags");
-    
+
     var uid;
 
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
             console.log("successfully logged in");
-            console.log(user.uid);
-            uid = user.uid
+            //console.log(user.uid);
+            uid = user.uid;
 
             db.collection("users").doc(uid).get().then(function (doc) {
                 if (doc.exists) {
@@ -31,6 +31,8 @@ $(function () {
     });
 
 
+
+
     db.collection("tags").orderBy("name").limit(8).get().then(function (querySnapshot) {
         querySnapshot.forEach(function (doc) {
 
@@ -40,18 +42,23 @@ $(function () {
             console.log(data["name"]);
 
             section.append('<a href="#"><p>' + data["name"] + " " + '</p></a>')
+
         });
     });
 });
 
 //Logout methode
-function logout(){
+function logout() {
     firebase.auth().signOut();
     console.log(logout);
     window.location.href = "../index.html";
 
 };
+//stories ophalen
+//var storiesRef = db.collection("user-stories");
 
+// Create a query against the collection.
+//var query = storiesRef.where("userUid", "==", "CA");
 
 
 // tags tonen in de homepagina
