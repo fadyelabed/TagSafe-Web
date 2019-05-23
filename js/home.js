@@ -146,7 +146,11 @@ function logout() {
     window.location.href = "../index.html";
 
 };
+//stories ophalen
+//var storiesRef = db.collection("user-stories");
 
+// Create a query against the collection.
+//var query = storiesRef.where("userUid", "==", "CA");
 
 
 // tags tonen in de homepagina
