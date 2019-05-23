@@ -386,6 +386,8 @@ main h2 {
 
 .tags {}
 
+.tags div {}
+
 .tags .wrapping-content {}
 
 .tags span {
@@ -404,7 +406,7 @@ main h2 {
     /* border: 1px solid #f1eded; */
 }
 
-.tags span:after {
+.tags div span:after {
     content: '';
     margin-left: 0.5%;
     background: var(--blauw);
@@ -420,35 +422,35 @@ main h2 {
     box-shadow: 0px !important;
 }
 
-.tags span:nth-child(1):after {
+.tags div span:nth-child(1):after {
     background: var(--blauw);
 }
 
-.tags a:nth-child(2) span:after {
+.tags div a:nth-child(2) span:after {
     background: var(--geel);
 }
 
-.tags a:nth-child(3) span:after {
+.tags div a:nth-child(3) span:after {
     background: var(--groen);
 }
 
-.tags a:nth-child(4) span:after {
+.tags div a:nth-child(4) span:after {
     background: var(--rood);
 }
 
-.tags a:nth-child(5) span:after {
+.tags div a:nth-child(5) span:after {
     background: var(--paars);
 }
 
-.tags a:nth-child(6) span:after {
+.tags div a:nth-child(6) span:after {
     background: var(--roos);
 }
 
-.tags a:nth-child(7) span:after {
+.tags div a:nth-child(7) span:after {
     background: var(--groen);
 }
 
-.tags a:nth-child(8) span:after {
+.tags div a:nth-child(8) span:after {
     background: var(--blauw);
 }
 
@@ -541,7 +543,6 @@ main h2 {
     padding: 1rem;
 }
 
-
 .story-item article h2 {
     color: white;
     text-align: left;
@@ -566,6 +567,37 @@ main h2 {
     /* overflow: hidden; */
     border-radius: 4px;
     /* height: 10rem; */
+    position: relative;
+}
+
+.recentFiles h2 {}
+
+.recentFiles select {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.select-style {
+    border: 1px solid #ccc;
+    width: 120px;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.select-style select {
+    padding: 5px 8px;
+    width: 130%;
+    border: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    background: transparent;
+    background-image: none;
+    -webkit-appearance: none;
+}
+
+.select-style select:focus {
+    outline: none;
 }
 
 .recentFiles .wrapping-content {}
