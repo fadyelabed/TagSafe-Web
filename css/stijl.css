@@ -156,6 +156,7 @@ main {}
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
+    cursor: pointer;
 }
 
 .login a p {
@@ -410,6 +411,7 @@ main h2 {
 
 .tags p:after {
     content: '';
+    -webkit-box-sizing: border-box;
     box-sizing: border-box;
     background: var(--blauw);
     width: 6px;
