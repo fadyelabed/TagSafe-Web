@@ -3,7 +3,7 @@
 <html>
 
 <head>
-     <title>TagSafe_Website</title>
+    <title>TagSafe_Website</title>
     <meta name="description" content="Dit is een site gemaakt door Erasmix 4 tijdens het Integration App en web project op de Erasmus Hogeschool te Brussel">
     <meta name="author" content="Fady Elabed">
     <meta name="keywords" content="Erasmix,Erasmus,website,multec, TagSafe, tag safe">
@@ -26,8 +26,8 @@
             <nav>
                 <div class="logo-container">
                     <a href="#"><img src="../images/logowide.svg" alt="logo icon tagsafe"></a>
-                    <a  onClick="logout()"> <span id="logout"><img src="../images/logout.svg" alt="logout icon"></span></a>
-                  
+                    <a onClick="logout()"> <span id="logout"><img src="../images/logout.svg" alt="logout icon"></span></a>
+
                 </div>
                 <ul>
                     <a href="home.html">
@@ -57,32 +57,51 @@
             <section class="articles">
 
                 <h1>My Articles</h1>
+                <div>
+                    <p>Article #1</p>
+                    <article>
+                        <img src="../images/articleExample.png" alt="article example">
+                    </article>
+                </div>
+                <div>
+                    <p>Article #2</p>
+                    <article>
+                        <img src="../images/articleExample.png" alt="article example">
+                    </article>
+                </div>
+                <div>
+                    <p>Article #3</p>
+                    <article>
+                        <img src="../images/articleExample.png" alt="article example">
+                    </article>
+                </div>
             </section>
         </div>
     </main>
-  
+
     <footer>
     </footer>
-    
-      <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-app.js"></script>
 
-  <!-- Add Firebase products that you want to use -->
-  <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-firestore.js"></script>
-<script src="../js/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-app.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-firestore.js"></script>
+    <script src="../js/firebase.js"></script>
     <script>
-    firebase.auth().onAuthStateChanged(function (user) {
-    if (user) {
-        console.log("successfully logged out");
-        console.log(user.email);
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                console.log("successfully logged out");
+                console.log(user.email);
 
-    } else {
-        console.log("no success");
+            } else {
+                console.log("no success");
 
-    }
-});
+            }
+        });
+
     </script>
-    
+
 </body>
 
 </html>
