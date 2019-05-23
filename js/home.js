@@ -51,16 +51,23 @@ $(function () {
 
         var query = storiesRef.where("userUid", "==", uid);
 
-        query.limit(5).get().then(function (querySnapshot) {
+        query.limit(3).get().then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
                 var data = doc.data();
 
                 var files = data["files"];
+                var thumb = data["thumbnail"];
                 console.log(data["title"]);
                 console.log(files);
+                
+                $(".stories").append('<a href="#"><div class="story-item">.<article><h2>' + data["title"] + "</h2><p>" + data["dateCreated"] + '</p></article></div></a>');
+                $(".story-item").css("background-image", "url('" + data["thumbnail"] + "')");
+                console.log(thumb);
+                
+                
                 for (var i = 0; i < files.length; i++) {
                     var storyFileId = files[i];
-                    
+                                        
                     //Gets files of user stories
                     getStoryFileById(storyFileId);
 
