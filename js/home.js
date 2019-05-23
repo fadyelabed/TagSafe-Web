@@ -14,20 +14,8 @@ $(function () {
             uid = user.uid;
 
             getUserTags(uid);
+            getUserStories(uid);
             getUserFiles(uid);
-            
-
-
-            //            db.collection("users").doc(uid).get().then(function (doc) {
-            //                if (doc.exists) {
-            //                    console.log("Document data:", doc.data());
-            //                } else {
-            //                    // doc.data() will be undefined in this case
-            //                    console.log("No such document!");
-            //                }
-            //            }).catch(function (error) {
-            //                console.log("Error getting document:", error);
-            //            });
 
         } else {
             console.log("no success");
@@ -37,40 +25,64 @@ $(function () {
 
     });
 
-        function getUserTags(uid) {
+    function getUserTags(uid) {
 
         // Create a reference to the cities collection
         var userRef = db.collection("user-tags");
 
         // Create a query against the collection.
         var query = userRef.where("userUid", "==", uid);
-        console.log(query);
+        //console.log(query);
 
         query.limit(8).get().then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
                 var data = doc.data();
-                
+
                 section.append('<a href="#"><p>' + data["name"] + " " + '</p></a>')
             });
-
-            
-
-
-
-            
-
-            //Image tonen
-
-            //         var image = $('<img />', {
-            //                    src:  "https://firebasestorage.googleapis.com/v0/b/tagsafe-e1bf4.appspot.com/o/image%2F3BBA73B8-FEFE-4423-999F-900EDE76CA7C.jpeg?alt=media&token=42aedb72-6d05-43a7-bf34-434a5f9d39a8",
-            //                    width: '100px',
-            //                    height: '100px',
-            //               
-            //                });
-            //        console.log(image);
-            //    
         });
 
+    }
+
+    //Gets user stories
+    function getUserStories(uid) {
+        console.log("inside");
+        var storiesRef = db.collection("user-stories");
+
+        var query = storiesRef.where("userUid", "==", uid);
+
+        query.limit(5).get().then(function (querySnapshot) {
+            querySnapshot.forEach(function (doc) {
+                var data = doc.data();
+
+                var files = data["files"];
+                console.log(data["title"]);
+                console.log(files);
+                for (var i = 0; i < files.length; i++) {
+                    var storyFileId = files[i];
+                    
+                    //Gets files of user stories
+                    getStoryFileById(storyFileId);
+
+                }
+            });
+        });
+
+    }
+
+    function getStoryFileById(id) {
+        var storyFileRef = db.collection("user-files").doc(id);
+
+        storyFileRef.get().then(function (doc) {
+            if (doc.exists) {
+                console.log("Document data:", doc.data());
+            } else {
+                // doc.data() will be undefined in this case
+                console.log("No such document!");
+            }
+        }).catch(function (error) {
+            console.log("Error getting document:", error);
+        });
     }
 
 
@@ -81,7 +93,7 @@ $(function () {
 
         // Create a query against the collection.
         var query = userRef.where("userUid", "==", uid);
-        console.log(query);
+        //console.log(query);
 
         query.limit(5).get().then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
@@ -90,41 +102,18 @@ $(function () {
                 var filename = data["filename"];
                 var resolution = data["resolution"];
                 var dataCreated = data["dataCreated"];
-                console.log(mediaURL);
+                //console.log(mediaURL);
                 //var $row = $('<tr></tr>').appendTo('.file-item');
-        
-           $(".recentFiles").append($('<div class="file-item">'+ `<article><img src="${mediaURL} "/>` + '<footer><h2>' + filename + '</h2><b><p>' + resolution + '</p></b><p>' + dataCreated + '</p></article></div>').attr('src', mediaURL));
-                
-//           $(".file-item article").append($('<img />').attr('src', mediaURL));
-                
-                console.log(doc.id, ' => ', doc.data());
+
+                $(".recentFiles").append($('<div class="file-item">' + `<article><img src="${mediaURL} "/>` + '<footer><h2>' + filename + '</h2><b><p>' + resolution + '</p></b><p>' + dataCreated + '</p></article></div>').attr('src', mediaURL));
+
+                //           $(".file-item article").append($('<img />').attr('src', mediaURL));
+
+                //console.log(doc.id, ' => ', doc.data());
             });
-
-            
-
-
-
-            
-
-            //Image tonen
-
-            //         var image = $('<img />', {
-            //                    src:  "https://firebasestorage.googleapis.com/v0/b/tagsafe-e1bf4.appspot.com/o/image%2F3BBA73B8-FEFE-4423-999F-900EDE76CA7C.jpeg?alt=media&token=42aedb72-6d05-43a7-bf34-434a5f9d39a8",
-            //                    width: '100px',
-            //                    height: '100px',
-            //               
-            //                });
-            //        console.log(image);
-            //    
         });
 
     }
-
-
-
-
-
-
 
     db.collection("tags").orderBy("name").limit(8).get().then(function (querySnapshot) {
         querySnapshot.forEach(function (doc) {
@@ -132,9 +121,9 @@ $(function () {
             // doc.data() is never undefined for query doc snapshots
             //console.log(doc.id, " => ", doc.data());
             var data = doc.data()
-            console.log(data["name"]);
+            //console.log(data["name"]);
 
-//            section.append('<a href="#"><p>' + data["name"] + " " + '</p></a>')
+            //            section.append('<a href="#"><p>' + data["name"] + " " + '</p></a>')
         });
     });
 });
@@ -142,49 +131,7 @@ $(function () {
 //Logout methode
 function logout() {
     firebase.auth().signOut();
-    console.log(logout);
+    //console.log(logout);
     window.location.href = "../index.html";
 
 };
-//stories ophalen
-//var storiesRef = db.collection("user-stories");
-
-// Create a query against the collection.
-//var query = storiesRef.where("userUid", "==", "CA");
-
-
-// tags tonen in de homepagina
-//$(function () {
-//    var db = firebase.firestore();
-//
-//    var section = $(".tags")
-//    var tagsRef = db.collection("tags");
-//
-//    //    var tags = tagsRef.orderBy("name").limit(3);
-//    //    console.log(tags);
-//
-//    var uid;
-//
-//    firebase.auth().onAuthStateChanged(function (user) {
-//        if (user) {
-//            console.log("successfully logged in");
-//            console.log(user.uid);
-//            uid = user.uid
-//
-//            db.collection("users").doc(uid).get().then(function (doc) {
-//                if (doc.exists) {
-//                    console.log("Document data:", doc.data());
-//                } else {
-//                    // doc.data() will be undefined in this case
-//                    console.log("No such document!");
-//                }
-//            }).catch(function (error) {
-//                console.log("Error getting document:", error);
-//            });
-//
-//        } else {
-//            console.log("no success");
-//
-//        }
-//    });
-//
