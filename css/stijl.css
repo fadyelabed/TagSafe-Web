@@ -317,6 +317,7 @@ header hr {
     padding: 0;
     right: 0;
     padding: 3%;
+    cursor: pointer;
 }
 
 main h1 {
@@ -581,6 +582,11 @@ main h2 {
     position: absolute;
     right: 0;
     top: 0;
+    padding: 0.6% 4%;
+    padding-left: 0;
+    border-radius: 4px;
+    background: none;
+    border: 1px solid #d9d9d9;
 }
 
 .select-style {
@@ -661,7 +667,7 @@ main h2 {
     /* margin: 1% 0; */
     width: 11rem;
     float: left;
-    height: 11rem;
+    height: 13rem;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -696,7 +702,8 @@ main h2 {
 
 .file-item article img {
     margin-bottom: 13%;
-    width: 30%;
+    width: 60%;
+    border-radius: 4px;
 }
 
 .file-item article b {
@@ -741,7 +748,7 @@ main h2 {
 .file-item h2 {
     text-align: left;
     margin: 0;
-    font-size: 1.3em;
+    font-size: 1.2em;
     color: black;
     font-weight: 400;
 }
