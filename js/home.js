@@ -37,7 +37,7 @@ $(function () {
             }
             $(".tag-item").on("click", function (e) {
                 console.log($(this).attr('name'));
-                
+                searchText.value = $(this).attr('name');
             });
         }
 
