@@ -22,12 +22,10 @@ function login() {
 
         } else {
             console.log("no success");
-
+            $("#errorLogin").css("display", "block").fadeIn(500);
         }
     });
-    
+
 
 
 };
-
-

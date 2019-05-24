@@ -25,16 +25,16 @@
     <section class="login">
 
         <div class="wrapping-content">
-            <div id="login">
+            <form id="login">
                 <img src="images/logowhite.svg" alt="logo reset">
                 <input type="email" placeholder="Email" id="email">
                 <input type="password" placeholder="Password" id="password">
-                <a onClick="login()" class="loginbtn" type="submit" value="inloggen">Login</a>
+                <a onClick="login()" class="loginbtn" type="submit" value="inloggen">Login </a>
                 <a href="#">
                     <p>Forgot your password?</p>
                 </a>
-            </div>
-            <div id="usderDiv"><a href="pages/home.html" ></a></div>
+                <p id="errorLogin">Your password/mail is incorrect.</p>
+            </form>
         </div>
 
     </section>

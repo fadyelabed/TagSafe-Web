@@ -60,18 +60,20 @@
             <section class="search">
 
                 <h1>My Files</h1>
-                <div class="searchbar">
-                    <img src="../images/search.svg" alt=""><input type="text" placeholder="Search for tags...">
-                </div>
+                <form class="searchbar">
+                    <img src="../images/search.svg" alt=""><input id="searchText" type="text" placeholder="Search for tags...">
+                    <button style="display: none;" type="submit"></button>
+                </form>
+
                 <h2>Most recent tags:</h2>
                 <section class="tags">
                 </section>
             </section>
 
             <section class="stories">
-               
+
                 <h2>Most recent stories:</h2>
-<!--
+                <!--
                 <a href="#">
                     <div class="story-item">
                         <article>
@@ -123,8 +125,8 @@
                   <option value="tag">Tag</option>
                   <option value="type">Type</option>
                 </select>
-                
-<!--
+
+                <!--
                 <div class="file-item" id="fileImg">
                     <article>
                         <img src="../images/mic.svg" alt="mic icon">
@@ -225,7 +227,7 @@
 
     </script>
     <script src="../js/home.js"></script>
-    <script src="../js/main.js"></script>
+    <!--    <script src="../js/main.js"></script>-->
 
 </body>
 

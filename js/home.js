@@ -4,8 +4,32 @@ $(function () {
 
     var section = $(".tags")
     var tagsRef = db.collection("tags");
+    var tagsArray = [];
 
     var uid;
+
+
+    $(".searchbar").submit(function (e) {
+        e.preventDefault();
+        //console.log("test");
+
+        var searchText = document.getElementById("searchText");
+        console.log(searchText.value);
+
+//        for (var i = 0; i < tagsArray.length; i++) {
+//            if (tagsArray[i].name === searchText) {
+//                console.log("search succes");
+//            } else {
+//                console.log("search fail");
+//            }
+//        }
+        if (tagsArray.indexOf(searchText) > -1) {
+               console.log("search succes");
+        }else{
+            console.log("search fail");
+
+        }
+    });
 
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
@@ -25,6 +49,31 @@ $(function () {
 
     });
 
+    //search functie op homepagina
+    function searchForTags() {
+
+        var searchText = document.getElementById("searchText");
+        searchText.addEventListener("click", function () {
+            console.log("test");
+        });
+        console.log(searchText);
+
+
+
+        //        var found = tagsArray.find(function (element) {
+        //            console.log(element["name"]);
+        //            return element["name"] == "";
+        //        });
+
+        //        
+        //        var found = false;
+        //for (var i = 0; i < categories.length && !found; i++) {
+        //  if (categories[i] === "specialword") {
+        //    found = true;
+        //    break;
+        //  }
+    }
+
     function getUserTags(uid) {
 
         // Create a reference to the cities collection
@@ -37,9 +86,18 @@ $(function () {
         query.limit(8).get().then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
                 var data = doc.data();
+                tagsArray.push(data);
 
                 section.append('<a href="#"><p>' + data["name"] + " " + '</p></a>')
             });
+            console.log(tagsArray)
+
+            for (var i = 0; i < tagsArray.length; i++) {
+                console.log(tagsArray[i]["name"]);
+            }
+
+
+
         });
 
     }
@@ -57,17 +115,17 @@ $(function () {
 
                 var files = data["files"];
                 var thumb = data["thumbnail"];
-                console.log(data["title"]);
-                console.log(files);
-                
+                //console.log(data["title"]);
+                //console.log(files);
+
                 $(".stories").append('<a href="#"><div class="story-item">.<article><h2>' + data["title"] + "</h2><p>" + data["dateCreated"] + '</p></article></div></a>');
                 $(".story-item").css("background-image", "url('" + data["thumbnail"] + "')");
-                console.log(thumb);
-                
-                
+                //console.log(thumb);
+
+
                 for (var i = 0; i < files.length; i++) {
                     var storyFileId = files[i];
-                                        
+
                     //Gets files of user stories
                     getStoryFileById(storyFileId);
 
@@ -82,7 +140,7 @@ $(function () {
 
         storyFileRef.get().then(function (doc) {
             if (doc.exists) {
-                console.log("Document data:", doc.data());
+                //console.log("Document data:", doc.data());
             } else {
                 // doc.data() will be undefined in this case
                 console.log("No such document!");
