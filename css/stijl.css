@@ -419,7 +419,7 @@ main h2 {
 
 .tags .wrapping-content {}
 
-.tags p {
+.tags p, .searchedTags p {
     font-size: 1.2em;
     /* display: initial; */
     float: left;
@@ -437,7 +437,7 @@ main h2 {
     /* border: 1px solid #f1eded; */
 }
 
-.tags p:after {
+.tags p:after, .searchedTags p:after {
     content: '';
     -webkit-box-sizing: border-box;
     box-sizing: border-box;

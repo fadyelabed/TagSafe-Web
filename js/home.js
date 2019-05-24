@@ -5,6 +5,7 @@ $(function () {
     var section = $(".tags")
     var tagsRef = db.collection("tags");
     var tagsArray = [];
+    var filteredTags = [];
 
     var uid;
 
@@ -16,20 +17,29 @@ $(function () {
         var searchText = document.getElementById("searchText");
         console.log(searchText.value);
 
-//        for (var i = 0; i < tagsArray.length; i++) {
-//            if (tagsArray[i].name === searchText) {
-//                console.log("search succes");
-//            } else {
-//                console.log("search fail");
-//            }
-//        }
-        if (tagsArray.indexOf(searchText) > -1) {
-               console.log("search succes");
-        }else{
-            console.log("search fail");
+        if (searchText.value == "") {
+            console.log("leeg");
+            $(".tags").css("display", "initial");
+            $(".searchedTags").empty();
+        } else {
+            for (var i = 0; i < tagsArray.length; i++) {
+                if (tagsArray[i].name.includes(searchText.value)) {
+                    //console.log("search succes");
+                    filteredTags.push(tagsArray[i]);
+                    $(".tags").css("display", "none");
 
+                    $(".searchedTags").append('<a class="tag-item" href="#"><p>' + tagsArray[i]["name"] + " " + '</p></a>');
+                }
+            }
         }
+
+ $(".tag-item").on("click", function () {
+            console.log("test");
+        });
+        console.log(filteredTags);
     });
+
+
 
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
@@ -88,7 +98,7 @@ $(function () {
                 var data = doc.data();
                 tagsArray.push(data);
 
-                section.append('<a href="#"><p>' + data["name"] + " " + '</p></a>')
+                section.append('<a href="#" class="tag-item"><p>' + data["name"] + " " + '</p></a>')
             });
             console.log(tagsArray)
 
