@@ -22,22 +22,27 @@ $(function () {
             $(".tags").css("display", "initial");
             $(".searchedTags").empty();
         } else {
+            var foundTag;
             for (var i = 0; i < tagsArray.length; i++) {
-                if (tagsArray[i].name.includes(searchText.value)) {
+                if (tagsArray[i]["name"].includes(searchText.value)) {
+                    foundTag = tagsArray[i];
+                    console.log(foundTag);
                     //console.log("search succes");
-                    filteredTags.push(tagsArray[i]);
+                    filteredTags.push(foundTag);
                     $(".tags").css("display", "none");
 
-                    $(".searchedTags").append('<a class="tag-item" href="#"><p>' + tagsArray[i]["name"] + " " + '</p></a>');
+                    $(".searchedTags").append('<a class="tag-item" name="' +foundTag["name"] +' " href="#"><p>' + foundTag["name"] + " " + '</p></a>');
+
                 }
             }
+            $(".tag-item").on("click", function (e) {
+                console.log($(this).attr('name'));
+                
+            });
         }
 
- $(".tag-item").on("click", function () {
-            console.log("test");
-        });
-        console.log(filteredTags);
     });
+
 
 
 
@@ -64,7 +69,9 @@ $(function () {
 
         var searchText = document.getElementById("searchText");
         searchText.addEventListener("click", function () {
-            console.log("test");
+            //console.log("test");
+            //console.log(filteredTags[i]);
+
         });
         console.log(searchText);
 
@@ -107,8 +114,13 @@ $(function () {
             }
 
 
+            $(".tag-item").on("click", function () {
+                //console.log("test");
+                console.log(filteredTags[i]);
 
+            });
         });
+
 
     }
 
