@@ -3,10 +3,10 @@
 <html>
 
 <head>
-    <title>TagSafe</title>
+    <title>TagSafe test</title>
     <meta name="description" content="Dit is een site gemaakt door Erasmix 4 tijdens het Integration App en web project op de Erasmus Hogeschool te Brussel">
     <meta name="author" content="Fady Elabed">
-    <meta name="keywords" content="Erasmix,Erasmus,website,multec, TagSafe, tag safe">
+    <meta name="keywords" content="Reset,Erasmus,website,multec">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="css/reset.css">
@@ -14,43 +14,26 @@
     <link rel="stylesheet" type="text/css" href="css/stijl.css">
     <link rel="icon" type="image/png" href="images/fav.png">
 </head>
+
+<script src="js/main.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-<!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-app.js"></script>
-
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#config-web-app -->
-
-<script>
-    // Your web app's Firebase configuration
-    var firebaseConfig = {
-        apiKey: "AIzaSyD3-3yCC41HWr-AJYdXkPDSfxD6QEFii5Y",
-        authDomain: "tagsafe-e1bf4.firebaseapp.com",
-        databaseURL: "https://tagsafe-e1bf4.firebaseio.com",
-        projectId: "tagsafe-e1bf4",
-        storageBucket: "tagsafe-e1bf4.appspot.com",
-        messagingSenderId: "719548532308",
-        appId: "1:719548532308:web:ff7914623e41b34b"
-    };
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-
-</script>
 
 <body>
+   
     <section class="login">
 
         <div class="wrapping-content">
             <form id="login">
                 <img src="images/logowhite.svg" alt="logo reset">
-                <input type="email" placeholder="Email">
-                <input type="password" placeholder="Password">
-                <a href="pages/home.html" class="loginbtn" type="submit" value="inloggen">Login</a>
+                <input type="email" placeholder="Email" id="email">
+                <input type="password" placeholder="Password" id="password">
+                <a onClick="login()" class="loginbtn" type="submit" value="inloggen">Login </a>
                 <a href="#">
                     <p>Forgot your password?</p>
                 </a>
+                <p id="errorLogin">Your password/mail is incorrect.</p>
             </form>
         </div>
 
@@ -58,6 +41,17 @@
     <footer>
 
     </footer>
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+  <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-app.js"></script>
+
+  <!-- Add Firebase products that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-firestore.js"></script>
+<script src="js/firebase.js"></script>
 </body>
 
 </html>

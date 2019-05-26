@@ -3,7 +3,7 @@
 <html>
 
 <head>
-    <title>TagSafe</title>
+    <title>TagSafe_Website</title>
     <meta name="description" content="Dit is een site gemaakt door Erasmix 4 tijdens het Integration App en web project op de Erasmus Hogeschool te Brussel">
     <meta name="author" content="Fady Elabed">
     <meta name="keywords" content="Erasmix,Erasmus,website,multec, TagSafe, tag safe">
@@ -13,32 +13,15 @@
     <link rel="stylesheet" type="text/css" href="../css/master.css">
     <link rel="stylesheet" type="text/css" href="../css/stijl.css">
     <link rel="icon" type="image/png" href="../images/fav.png">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="../js/home.js"></script>
+
 </head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="../js/main.js"></script>
+
+
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-<!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-app.js"></script>
 
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#config-web-app -->
-
-<script>
-    // Your web app's Firebase configuration
-    var firebaseConfig = {
-        apiKey: "AIzaSyD3-3yCC41HWr-AJYdXkPDSfxD6QEFii5Y",
-        authDomain: "tagsafe-e1bf4.firebaseapp.com",
-        databaseURL: "https://tagsafe-e1bf4.firebaseio.com",
-        projectId: "tagsafe-e1bf4",
-        storageBucket: "tagsafe-e1bf4.appspot.com",
-        messagingSenderId: "719548532308",
-        appId: "1:719548532308:web:ff7914623e41b34b"
-    };
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-
-</script>
 
 <body>
     <header>
@@ -46,7 +29,9 @@
             <nav>
                 <div class="logo-container">
                     <a href="#"><img src="../images/logowide.svg" alt="logo icon tagsafe"></a>
-                    <a href="../index.html"> <span class="logout"><img src="../images/logout.svg" alt="logout icon"></span></a>
+                    <a onClick="logout()"> <span id="logout"><img src="../images/logout.svg" alt="logout icon"></span></a>
+
+
                 </div>
                 <ul>
                     <a href="home.html">
@@ -78,41 +63,20 @@
             <section class="search">
 
                 <h1>My Files</h1>
-                <div class="searchbar">
-                    <img src="../images/search.svg" alt=""><input type="text" placeholder="Search for tags...">
-                </div>
+                <form class="searchbar">
+                    <img src="../images/search.svg" alt=""><input id="searchText" type="text" placeholder="Search for tags...">
+                    <button style="display: none;" type="submit"></button>
+                </form>
+
                 <h2>Most recent tags:</h2>
+                <div class="searchedTags"></div>
                 <section class="tags">
-                    <div>
-                        <a href="#"><span>accident</span></a>
-
-                    </div>
-                    <div>
-                        <a href="#"><span>traffic</span></a>
-                    </div>
-                    <div>
-                        <a href="#"><span>politics</span></a>
-
-                    </div>
-                    <div>
-                        <a href=""><span>economy</span></a>
-                    </div>
-                    <div>
-                        <a href=""><span>domestic violence</span></a>
-
-                    </div>
-                    <div>
-                        <a href=""><span>environment</span></a>
-
-                    </div>
-                    <div>
-                        <a href=""><span>climate</span></a>
-
-                    </div>
                 </section>
             </section>
             <section class="stories">
+
                 <h2>Most recent stories:</h2>
+                <!--
                 <a href="#">
                     <div class="story-item">
                         <article>
@@ -152,16 +116,21 @@
                         </article>
                     </div>
                 </a>
+-->
             </section>
+            <br>
             <section class="recentFiles">
                 <h2>Most recent files:</h2>
                 <select>
                   <option value="">Sort by:</option>
                   <option value="name">Name</option>
                   <option value="tag">Tag</option>
+                  <option value="tag">Tag</option>
                   <option value="type">Type</option>
                 </select>
-                <div class="file-item">
+
+                <!--
+                <div class="file-item" id="fileImg">
                     <article>
                         <img src="../images/mic.svg" alt="mic icon">
                         <footer>
@@ -174,7 +143,7 @@
                 </div>
                 <div class="file-item">
                     <article>
-                        <img src="../images/img.svg" alt="image icon">
+                       <img src="../images/img.svg" alt="image icon">
                         <footer>
                             <h2>Traffic.jpg</h2>
                             <b><p>1089 x 765</p></b>
@@ -202,11 +171,14 @@
                             <b><p>1280:720</p></b>
                             <p>14-06-2019</p>
 
+
+
                         </footer>
                     </article>
                 </div>
                 <div class="file-item">
                     <article>
+
                         <img src="../images/mic.svg" alt="mic icon">
                         <footer>
                             <h2>Traffic2.mp3</h2>
@@ -214,25 +186,51 @@
                             <p>14-06-2019</p>
 
                         </footer>
+
                     </article>
                 </div>
                 <div class="file-item">
                     <article>
-                        <img src="../images/notition.svg" alt="mic icon">
+
+                        <img src="../images/mic.svg" alt="mic icon">
                         <footer>
                             <h2>Traffic2.txt</h2>
                             <b><p>201 words</p></b>
                             <p>14-06-2019</p>
 
                         </footer>
+
                     </article>
                 </div>
-
+-->
             </section>
+        </div>
 
     </main>
     <footer>
     </footer>
+
+    <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-app.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-firestore.js"></script>
+    <script src="../js/firebase.js"></script>
+    <script>
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                console.log("successfully logged out");
+                console.log(user.email);
+
+            } else {
+                console.log("no success");
+
+            }
+        });
+
+    </script>
+    <!--    <script src="../js/main.js"></script>-->
+
 </body>
 
 </html>
