@@ -657,11 +657,15 @@ main h2 {
 
 .fileViewer .recentFiles h2 {
     text-align: center;
+    margin: auto;
+    display: block;
+    clear: both;
+    margin: 3% 0;
 }
 
 .fileViewer .file-item {
     width: 8rem;
-    height: 8rem;
+    height: 10rem;
     margin: 1.5%;
 }
 
@@ -867,30 +871,81 @@ main h2 {
     resize: none;
 }
 
-.texteditorSplit header {}
+
+.texteditorSplit figure div{
+    float: left;
+    position: relative;
+    z-index: 0;
+    margin: 1%;
+}
 .texteditorSplit figure img{
     
-position: relative;
-width: 100px;
-    height: 100px;
-    background-position: 50% 50%;
-    background-repeat: no-repeat;
-    background-size: cover;
+/* margin: 1%; */
     
-float: left;
+position: relative;
+    
+width: 100px;
+    
+height: 100px;
+    
+background-position: 50% 50%;
+    
+background-repeat: no-repeat;
+    
+background-size: cover;
     
 border-radius: 4px;
+    
+position: relative;
+}
+
+
+.addedImage:after{
+    content: '';
+    position: absolute;
+    background-image: url(../images/trashicon.svg);
+    background-size: contain;
+    height: 41px;
+    background-repeat: no-repeat;
+    left: 0;
+    right: 0;
+    margin: auto;
+    transform: translate(-50%,-50%);
+    left: 80%;
+    z-index: 99;
+    top: 50%;
+    width: 100%;
+    opacity: 0;
+    transition: 0.3s ease;
+}
+.texteditorSplit figure div:hover .addedImage:after {
+    opacity: 0.45;
+}
+.addedImage:before{
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 96%;
+    background: black;
+    z-index: 1;
+    border-radius: 5px;
+    opacity: 0.1;
+    -webkit-transition: 0.3s ease;
+    transition: 0.3s ease;
 }
 .texteditorSplit figure {
         padding: 1rem;
         box-sizing: border-box;
         /* overflow: scroll; */
-        height: 7rem;
+        height: 9rem;
         overflow-y: scroll;
 }
 
 .addContent {
     position: absolute;
+    z-index: 999;
     color: var(--blauw);
     background: white;
     border: 2px solid var(--blauw);
@@ -907,7 +962,7 @@ border-radius: 4px;
     /* right: 0; */
     /* margin-left: auto; */
     /* margin-right: auto; */
-    bottom: 7%;
+    bottom: 22%;
     width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;

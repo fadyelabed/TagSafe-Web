@@ -10,7 +10,7 @@ $(function () {
     var filteredTags = [];
 
     var uid;
-
+    $(".addContent").hide();
 
     $(".searchbar").submit(function (e) {
         e.preventDefault();
@@ -45,9 +45,6 @@ $(function () {
 
     });
 
-
-
-
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
             console.log("successfully logged in");
@@ -64,7 +61,6 @@ $(function () {
 
         }
 
-
     });
 
     //search functie op homepagina
@@ -72,26 +68,10 @@ $(function () {
 
         var searchText = document.getElementById("searchText");
         searchText.addEventListener("click", function () {
-            //console.log("test");
-            //console.log(filteredTags[i]);
 
         });
         console.log(searchText);
 
-
-
-        //        var found = tagsArray.find(function (element) {
-        //            console.log(element["name"]);
-        //            return element["name"] == "";
-        //        });
-
-        //        
-        //        var found = false;
-        //for (var i = 0; i < categories.length && !found; i++) {
-        //  if (categories[i] === "specialword") {
-        //    found = true;
-        //    break;
-        //  }
     }
 
     function getUserTags(uid) {
@@ -123,8 +103,6 @@ $(function () {
 
             });
         });
-
-
     }
 
     //Gets user stories
@@ -145,8 +123,6 @@ $(function () {
 
                 $(".stories").append('<a href="#"><div class="story-item">.<article><h2>' + data["title"] + "</h2><p>" + data["dateCreated"] + '</p></article></div></a>');
                 $(".story-item").css("background-image", "url('" + data["thumbnail"] + "')");
-                //console.log(thumb);
-
 
                 for (var i = 0; i < files.length; i++) {
                     var storyFileId = files[i];
@@ -180,13 +156,7 @@ $(function () {
 
     db.collection("tags").orderBy("name").limit(8).get().then(function (querySnapshot) {
         querySnapshot.forEach(function (doc) {
-
-            // doc.data() is never undefined for query doc snapshots
-            //console.log(doc.id, " => ", doc.data());
             var data = doc.data()
-            //console.log(data["name"]);
-
-            //            section.append('<a href="#"><p>' + data["name"] + " " + '</p></a>')
         });
     });
 
@@ -203,75 +173,62 @@ $(function () {
         //console.log(query);
 
         query.limit(5).get().then(function (querySnapshot) {
-            $(".addContent").hide();
+
             querySnapshot.forEach(function (doc) {
                 var data = doc.data();
-                var mediaURL = data["mediaURL"];
+                var content = data["content"];
                 var filename = data["filename"];
-                var resolution = data["resolution"];
+                var detail = data["detail"];
                 var dataCreated = data["dataCreated"];
-                //console.log(mediaURL);
-                //var $row = $('<tr></tr>').appendTo('.file-item');
+                //console.log(content);
 
-                $(".fileViewer .recentFiles").append($(`<div class="file-item" id="${doc.id}">` + `<article><img src="${mediaURL} "/>` + '<footer><h2>' + filename + '</h2><b><p>' + resolution + '</p></b><p>' + dataCreated + '</p></article></div>').attr('src', mediaURL));
+                $(".fileViewer .recentFiles").append($(`<div class="file-item" id="${doc.id}">` + `<article><img src="${content} "/>` + '<footer><h2>' + filename + '</h2><b><p>' + detail + '</p></b><p>' + dataCreated + '</p></article></div>').attr('src', content));
 
-                //           $(".file-item article").append($('<img />').attr('src', mediaURL));
-
-                //console.log(doc.id, ' => ', doc.data());
-
-                $(`#${doc.id}`).on('click', function () {
-                    console.log(`id: ${doc.id}`);   
+                $(document).on('click', `#${doc.id}`, function () {
+                    console.log(`id: ${doc.id}`);
 
                     if ($(this).attr('data-click-state') == 1) {
                         $(this).attr('data-click-state', 0)
                         $(this).css("border", "0px")
-                        $(".addContent").fadeToggle(200);
-                        
+                        $(".addContent").fadeOut(200);
 
                     } else {
                         $(this).attr('data-click-state', 1)
                         $(this).css("border", "2px solid var(--blauw)")
-                        $(".addContent").fadeToggle(200);
-                        appendFileToEditor(mediaURL);
-                        
+                        $(".addContent").fadeIn(200);
+
+                        appendFileToEditor(doc.id, content);
                     }
 
                 });
-                
-
-
             });
-
-
-
         });
 
     }
-    
-    function appendFileToEditor(mediaURL){
-                         $(".addContent").click(function(){
-                     console.log("inside click");
-                     $(".texteditorSplit figure").append(`<img src="${mediaURL} "/>`);
-                 });
+
+    function appendFileToEditor(id, content) {
+
+        $(".addContent").click(function () {
+            $(".addContent").fadeOut(200);
+
+            if ($(`.texteditorSplit figure div .${id}`).length == 0) {
+                $(".texteditorSplit figure").append(`<div class="${id}"><img src="${content} "/></div>`);
+            } else {
+                console.log("already exists");
+            }
+
+
+            removeImagefromEditor(id, content);
+
+        });
     }
 
-    // KNOP
-    //      $(".addContent").hide();
-    //
-    //        $('.fileViewer .file-item').on('click', function() {
-    //            if ($(this).attr('data-click-state') == 1) {
-    //                $(this).attr('data-click-state', 0)
-    //                $(".fileViewer .file-item").css("border", "0px")
-    //                $(".addContent").fadeToggle(200);
-    //
-    //            } else {
-    //                $(this).attr('data-click-state', 1)
-    //                $(".fileViewer .file-item").css("border", "2px solid var(--blauw)")
-    //                $(".addContent").fadeToggle(200);
-    //
-    //            }
-    //
-    //        });
+    function removeImagefromEditor(id, content) {
+        $(`.${id}`).click(function () {
+            $(this).remove();
+            //$(".texteditorSplit figure img").remove();
+        });
+    }
 
 });
 

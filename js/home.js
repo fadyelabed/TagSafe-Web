@@ -6,10 +6,9 @@ $(function () {
     var tagsRef = db.collection("tags");
     var tagsArray = [];
     var filteredTags = [];
-
     var uid;
 
-
+    // Searchbar 
     $(".searchbar").submit(function (e) {
         e.preventDefault();
         //console.log("test");
@@ -43,9 +42,7 @@ $(function () {
 
     });
 
-
-
-
+    // Bij elke login van een ander user verandert de data naar zijn id.
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
             console.log("successfully logged in");
@@ -59,12 +56,10 @@ $(function () {
 
         } else {
             console.log("no success");
-
         }
 
-
     });
-    
+
 
 
     //search functie op homepagina
@@ -72,26 +67,10 @@ $(function () {
 
         var searchText = document.getElementById("searchText");
         searchText.addEventListener("click", function () {
-            //console.log("test");
-            //console.log(filteredTags[i]);
 
         });
         console.log(searchText);
 
-
-
-        //        var found = tagsArray.find(function (element) {
-        //            console.log(element["name"]);
-        //            return element["name"] == "";
-        //        });
-
-        //        
-        //        var found = false;
-        //for (var i = 0; i < categories.length && !found; i++) {
-        //  if (categories[i] === "specialword") {
-        //    found = true;
-        //    break;
-        //  }
     }
 
     function getUserTags(uid) {
@@ -188,32 +167,23 @@ $(function () {
         query.limit(5).get().then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
                 var data = doc.data();
-                var mediaURL = data["mediaURL"];
+                var content = data["content"];
                 var filename = data["filename"];
-                var resolution = data["resolution"];
+                var detail = data["detail"];
                 var dataCreated = data["dataCreated"];
-                //console.log(mediaURL);
-                //var $row = $('<tr></tr>').appendTo('.file-item');
+                //console.log(content);
 
-                $(".recentFiles").append($('<div class="file-item">' + `<article><img src="${mediaURL} "/>` + '<footer><h2>' + filename + '</h2><b><p>' + resolution + '</p></b><p>' + dataCreated + '</p></article></div>').attr('src', mediaURL));
+                $(".recentFiles").append($('<div class="file-item">' + `<article><img src="${content} "/>` + '<footer><h2>' + filename + '</h2><b><p>' + detail + '</p></b><p>' + dataCreated + '</p></article></div>').attr('src', content));
 
-                //           $(".file-item article").append($('<img />').attr('src', mediaURL));
-
-                //console.log(doc.id, ' => ', doc.data());
             });
         });
-
     }
 
     db.collection("tags").orderBy("name").limit(8).get().then(function (querySnapshot) {
         querySnapshot.forEach(function (doc) {
 
-            // doc.data() is never undefined for query doc snapshots
-            //console.log(doc.id, " => ", doc.data());
             var data = doc.data()
             //console.log(data["name"]);
-
-            //            section.append('<a href="#"><p>' + data["name"] + " " + '</p></a>')
         });
     });
 

@@ -3,7 +3,7 @@
 <html>
 
 <head>
-     <title>TagSafe_Website</title>
+    <title>TagSafe_Website</title>
     <meta name="description" content="Dit is een site gemaakt door Erasmix 4 tijdens het Integration App en web project op de Erasmus Hogeschool te Brussel">
     <meta name="author" content="Fady Elabed">
     <meta name="keywords" content="Erasmix,Erasmus,website,multec, TagSafe, tag safe">
@@ -19,31 +19,7 @@
 <!--<script src="../js/main.js"></script>-->
 <script src="../js/articlecreator.js"></script>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-<script>
-    
-    $(document).ready(function(){
-//        $(".addContent").hide();
-//
-//        $('.fileViewer .file-item').on('click', function() {
-//                    alert("oke");
-//
-//            if ($(this).attr('data-click-state') == 1) {
-//                $(this).attr('data-click-state', 0)
-//                $(".fileViewer .file-item").css("border", "0px")
-//                $(".addContent").fadeToggle(200);
-//
-//            } else {
-//                $(this).attr('data-click-state', 1)
-//                $(".fileViewer .file-item").css("border", "2px solid var(--blauw)")
-//                $(".addContent").fadeToggle(200);
-//
-//            }
-//
-//        });
-    });
 
-
-</script>
 
 <body>
     <header>
@@ -51,7 +27,7 @@
             <nav>
                 <div class="logo-container">
                     <a href="#"><img src="../images/logoicon.svg" alt="logo icon tagsafe"></a>
-                     <a  onClick="logout()"> <span id="logout"><img src="../images/logout.svg" alt="logout icon"></span></a>
+                    <a onClick="logout()"> <span id="logout"><img src="../images/logout.svg" alt="logout icon"></span></a>
                 </div>
                 <ul>
                     <a href="home.html">
@@ -81,96 +57,22 @@
             <section class="search">
 
                 <h1>My Files</h1>
-                <div class="searchbar">
-                    <img src="../images/search.svg" alt=""><input type="text" placeholder="Search for tags...">
-                </div>
+                <form class="searchbar">
+                    <img src="../images/search.svg" alt=""><input id="searchText" type="text" placeholder="Search for tags...">
+                    <button style="display: none;" type="submit"></button>
+                </form>
+                <h2>Most recent tags:</h2>
+                <div class="searchedTags"></div>
                 <section class="tags">
-                    <h2>Most recent tags:</h2>
 
-<!--
-                    <a href="#"><span>accident</span></a>
-                    <a href="#"><span>traffic</span></a>
-                    <a href="#"><span>politics</span></a>
-                    <a href=""><span>economy</span></a>
-                    <a href=""><span>domestic violence</span></a>
-                    <a href=""><span>environment</span></a>
-                    <a href=""><span>climate</span></a>
--->
                 </section>
             </section>
 
             <section class="recentFiles">
                 <h2>Most recent files:</h2>
 
-<!--
-                <div class="file-item">
-                    <article>
-                        <img src="../images/mic.svg" alt="mic icon">
-                        <footer>
-                            <h2>Traffic.mp3</h2>
-                            <b><p>1:43</p></b>
-                            <p>14-06-2019</p>
-
-                        </footer>
-                    </article>
-                </div>
-                <div class="file-item">
-                    <article>
-                        <img src="../images/img.svg" alt="image icon">
-                        <footer>
-                            <h2>Traffic.jpg</h2>
-                            <b><p>1089 x 765</p></b>
-                            <p>14-06-2019</p>
-
-                        </footer>
-                    </article>
-                </div>
-                <div class="file-item">
-                    <article>
-                        <img src="../images/notition.svg" alt="notition icon">
-                        <footer>
-                            <h2>TrafficNotes.txt</h2>
-                            <b><p>145 words</p></b>
-                            <p>14-06-2019</p>
-
-                        </footer>
-                    </article>
-                </div>
-                <div class="file-item">
-                    <article>
-                        <img src="../images/video.svg" alt="video icon">
-                        <footer>
-                            <h2>Traffic.mov</h2>
-                            <b><p>1280:720</p></b>
-                            <p>14-06-2019</p>
-
-                        </footer>
-                    </article>
-                </div>
-                <div class="file-item">
-                    <article>
-                        <img src="../images/mic.svg" alt="mic icon">
-                        <footer>
-                            <h2>Traffic2.mp3</h2>
-                            <b><p>1:03</p></b>
-                            <p>14-06-2019</p>
-
-                        </footer>
-                    </article>
-                </div>
-                <div class="file-item">
-                    <article>
-                        <img src="../images/notition.svg" alt="mic icon">
-                        <footer>
-                            <h2>Traffic2.txt</h2>
-                            <b><p>201 words</p></b>
-                            <p>14-06-2019</p>
-
-                        </footer>
-                    </article>
-                </div>
--->
             </section>
+        </div>
     </main>
     <a href="#" class="addContent">+ Add content to workspace</a>
     <div class="texteditorSplit" id="articleDocument">
@@ -185,29 +87,29 @@
         <input type="text" placeholder="Subtitle">
         <textarea rows="4" cols="50" placeholder="This is some text...">
 </textarea>
-  <hr>
-   <figure></figure>
+        <figure></figure>
     </div>
     <footer>
     </footer>
-        
-      <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-app.js"></script>
 
-  <!-- Add Firebase products that you want to use -->
-  <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-firestore.js"></script>
-<script src="../js/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-app.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-firestore.js"></script>
+    <script src="../js/firebase.js"></script>
     <script>
-    firebase.auth().onAuthStateChanged(function (user) {
-    if (user) {
-        console.log("successfully logged out");
-        console.log(user.email);
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                console.log("successfully logged out");
+                console.log(user.email);
 
-    } else {
-        console.log("no success");
+            } else {
+                console.log("no success");
 
-    }
-});
+            }
+        });
+
     </script>
 </body>
 
