@@ -1,5 +1,7 @@
 // tags tonen in de homepagina
 $(function () {
+
+
     var db = firebase.firestore();
 
     var section = $(".tags")
@@ -54,8 +56,8 @@ $(function () {
 
             getUserTags(uid);
             getUserStories(uid);
-            getUserFiles(uid);
-
+            //            getUserFiles(uid);
+            getUserartikels(uid);
 
         } else {
             console.log("no success");
@@ -64,8 +66,6 @@ $(function () {
 
 
     });
-    
-
 
     //search functie op homepagina
     function searchForTags() {
@@ -176,34 +176,7 @@ $(function () {
     }
 
 
-    function getUserFiles(uid) {
 
-        // Create a reference to the cities collection
-        var userRef = db.collection("user-files");
-
-        // Create a query against the collection.
-        var query = userRef.where("userUid", "==", uid);
-        //console.log(query);
-
-        query.limit(5).get().then(function (querySnapshot) {
-            querySnapshot.forEach(function (doc) {
-                var data = doc.data();
-                var mediaURL = data["mediaURL"];
-                var filename = data["filename"];
-                var resolution = data["resolution"];
-                var dataCreated = data["dataCreated"];
-                //console.log(mediaURL);
-                //var $row = $('<tr></tr>').appendTo('.file-item');
-
-                $(".recentFiles").append($('<div class="file-item">' + `<article><img src="${mediaURL} "/>` + '<footer><h2>' + filename + '</h2><b><p>' + resolution + '</p></b><p>' + dataCreated + '</p></article></div>').attr('src', mediaURL));
-
-                //           $(".file-item article").append($('<img />').attr('src', mediaURL));
-
-                //console.log(doc.id, ' => ', doc.data());
-            });
-        });
-
-    }
 
     db.collection("tags").orderBy("name").limit(8).get().then(function (querySnapshot) {
         querySnapshot.forEach(function (doc) {
@@ -218,7 +191,87 @@ $(function () {
     });
 
 
+    //Articlecreator
 
+    function getUserartikels(uid) {
+
+        // Create a reference to the cities collection
+        var userRef = db.collection("user-files");
+
+        // Create a query against the collection.
+        var query = userRef.where("userUid", "==", uid);
+        //console.log(query);
+
+        query.limit(5).get().then(function (querySnapshot) {
+            $(".addContent").hide();
+            querySnapshot.forEach(function (doc) {
+                var data = doc.data();
+                var mediaURL = data["mediaURL"];
+                var filename = data["filename"];
+                var resolution = data["resolution"];
+                var dataCreated = data["dataCreated"];
+                //console.log(mediaURL);
+                //var $row = $('<tr></tr>').appendTo('.file-item');
+
+                $(".fileViewer .recentFiles").append($(`<div class="file-item" id="${doc.id}">` + `<article><img src="${mediaURL} "/>` + '<footer><h2>' + filename + '</h2><b><p>' + resolution + '</p></b><p>' + dataCreated + '</p></article></div>').attr('src', mediaURL));
+
+                //           $(".file-item article").append($('<img />').attr('src', mediaURL));
+
+                //console.log(doc.id, ' => ', doc.data());
+
+                $(`#${doc.id}`).on('click', function () {
+                    console.log(`id: ${doc.id}`);   
+
+                    if ($(this).attr('data-click-state') == 1) {
+                        $(this).attr('data-click-state', 0)
+                        $(this).css("border", "0px")
+                        $(".addContent").fadeToggle(200);
+                        
+
+                    } else {
+                        $(this).attr('data-click-state', 1)
+                        $(this).css("border", "2px solid var(--blauw)")
+                        $(".addContent").fadeToggle(200);
+                        appendFileToEditor(mediaURL);
+                        
+                    }
+
+                });
+                
+
+
+            });
+
+
+
+        });
+
+    }
+    
+    function appendFileToEditor(mediaURL){
+                         $(".addContent").click(function(){
+                     console.log("inside click");
+                     $(".texteditorSplit figure").append(`<img src="${mediaURL} "/>`);
+                 });
+    }
+
+    // KNOP
+    //      $(".addContent").hide();
+    //
+    //        $('.fileViewer .file-item').on('click', function() {
+    //            if ($(this).attr('data-click-state') == 1) {
+    //                $(this).attr('data-click-state', 0)
+    //                $(".fileViewer .file-item").css("border", "0px")
+    //                $(".addContent").fadeToggle(200);
+    //
+    //            } else {
+    //                $(this).attr('data-click-state', 1)
+    //                $(".fileViewer .file-item").css("border", "2px solid var(--blauw)")
+    //                $(".addContent").fadeToggle(200);
+    //
+    //            }
+    //
+    //        });
 
 });
 

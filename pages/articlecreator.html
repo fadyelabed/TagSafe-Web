@@ -16,13 +16,32 @@
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="../js/main.js"></script>
+<!--<script src="../js/main.js"></script>-->
+<script src="../js/articlecreator.js"></script>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 <script>
-
-    $(".file-item").draggable({
-        handle: "img"
+    
+    $(document).ready(function(){
+//        $(".addContent").hide();
+//
+//        $('.fileViewer .file-item').on('click', function() {
+//                    alert("oke");
+//
+//            if ($(this).attr('data-click-state') == 1) {
+//                $(this).attr('data-click-state', 0)
+//                $(".fileViewer .file-item").css("border", "0px")
+//                $(".addContent").fadeToggle(200);
+//
+//            } else {
+//                $(this).attr('data-click-state', 1)
+//                $(".fileViewer .file-item").css("border", "2px solid var(--blauw)")
+//                $(".addContent").fadeToggle(200);
+//
+//            }
+//
+//        });
     });
+
 
 </script>
 
@@ -68,6 +87,7 @@
                 <section class="tags">
                     <h2>Most recent tags:</h2>
 
+<!--
                     <a href="#"><span>accident</span></a>
                     <a href="#"><span>traffic</span></a>
                     <a href="#"><span>politics</span></a>
@@ -75,12 +95,14 @@
                     <a href=""><span>domestic violence</span></a>
                     <a href=""><span>environment</span></a>
                     <a href=""><span>climate</span></a>
+-->
                 </section>
             </section>
 
             <section class="recentFiles">
                 <h2>Most recent files:</h2>
 
+<!--
                 <div class="file-item">
                     <article>
                         <img src="../images/mic.svg" alt="mic icon">
@@ -146,9 +168,11 @@
                         </footer>
                     </article>
                 </div>
+-->
             </section>
             </div>
     </main>
+    <a href="#" class="addContent">+ Add content to workspace</a>
     <div class="texteditorSplit" id="articleDocument">
         <div class="export">
             <a href="javascript:genPDF()"><img src="../images/save.svg" alt="save icon"></a>
@@ -161,6 +185,8 @@
         <input type="text" placeholder="Subtitle">
         <textarea rows="4" cols="50" placeholder="This is some text...">
 </textarea>
+  <hr>
+   <figure></figure>
     </div>
     <footer>
     </footer>

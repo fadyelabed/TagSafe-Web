@@ -715,6 +715,7 @@ main h2 {
     box-shadow: 0px 0px 10px #00000017;
     /* align-items: center; */
     position: relative;
+    box-sizing: border-box;
 }
 
 .file-item article {
@@ -859,7 +860,7 @@ main h2 {
 .texteditorSplit textarea {
     width: 100% !important;
     border: none;
-    height: 72%;
+    height: 49%;
     padding: 2% 0;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
@@ -867,6 +868,55 @@ main h2 {
 }
 
 .texteditorSplit header {}
+.texteditorSplit figure img{
+    
+position: relative;
+width: 100px;
+    height: 100px;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+float: left;
+    
+border-radius: 4px;
+}
+.texteditorSplit figure {
+        padding: 1rem;
+        box-sizing: border-box;
+        /* overflow: scroll; */
+        height: 7rem;
+        overflow-y: scroll;
+}
+
+.addContent {
+    position: absolute;
+    color: var(--blauw);
+    background: white;
+    border: 2px solid var(--blauw);
+    padding: 0.5% 1%;
+    padding-top: 0.85%;
+    border-radius: 3px;
+    text-transform: initial;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    left: 52%;
+    -webkit-box-shadow: 0px 1px 6px #00000042;
+    box-shadow: 0px 1px 6px #00000042;
+    font-size: 1.2em;
+    /* right: 0; */
+    /* margin-left: auto; */
+    /* margin-right: auto; */
+    bottom: 7%;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+}
+
+.addContent:hover {
+    background: var(--blauw);
+    color: white;
+}
 
 .texteditorSplit header h1 {
     margin: 0.7em;
@@ -958,7 +1008,7 @@ main h2 {
     background: var(--blauw);
     color: white;
 }
-
+.texteditorSplit hr {}
 footer {}
 
 footer p {
