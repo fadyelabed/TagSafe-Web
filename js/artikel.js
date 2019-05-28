@@ -87,7 +87,7 @@ window.addEventListener("load", function () {
         $(".texteditorSplit").css("width", "100%");
         $(".texteditorSplit input").css({"box-sizing": "border-box", "font-size": "2.5em"});
         $(".subtitle").css("font-size", "2.1em");
-        $(".textarea").css("font-size", "2.3em");
+        $(".texteditorSplit textarea").css("font-size", "1.6em");
 
         $(".texteditorSplit figure").css("overflow", "initial");
         $(".export").hide();
