@@ -126,17 +126,20 @@ $(function () {
                     // do this (1st click, 3rd click, etc)
                     selectedTags.push(selectedTag);
                     console.log("Selected: " + selectedTag);
+                    $(this).find("p").css({"border": "2px solid #0364e8", "box-sizing": "border-box"});
+
                 } else {
 
                     //Remove specific item from array
                     //http://www.jquerybyexample.net/2012/02/remove-item-from-array-using-jquery.html
                     selectedTags.splice($.inArray(selectedTag, selectedTags),1);
                     console.log("Unselected: " + selectedTag);
+                    $(this).find("p").css("border", "0px");
+
                 }
 
                 // put the state back
                 $(this).data('state', state);
-
                 searchForFiles(selectedTags);
                 console.log(selectedTags);
 
