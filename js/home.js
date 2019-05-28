@@ -9,6 +9,9 @@ $(function () {
     var userFiles = [];
     var uid;
 
+    var foundFiles = [];
+    var selectedTags = [];
+
     // Searchbar 
     $(".searchbar").submit(function (e) {
         e.preventDefault();
@@ -37,10 +40,11 @@ $(function () {
             }
             $(".tag-item").on("click", function (e) {
                 console.log($(this).attr('name'));
-                searchText.value = $(this).attr('name');
+                //searchText.value = $(this).attr('name');
+                searchForFiles(selectedTags);
             });
 
-            //searchForFiles(searchText.value);
+
         }
 
 
@@ -71,24 +75,63 @@ $(function () {
 
     //search functie op homepagina
     function searchForFiles(selectedTags) {
-        var foundFiles = [];
+        foundFiles = [];
+        $(".recentFiles .file-items-wrapper").empty();
+        if(selectedTags.length === 0){
+            console.log("array empty");
+            userFiles = [];
+            getUserFiles(uid);
+        } else {
+            for(var i=0; i<userFiles.length;i++){
+                var userFileTags = [];
+                userFileTags = userFiles[i]["tags"];
+                //console.log(userFileTags);
 
-        for(var i=0; i<userFiles.length;i++){
-            var userFileTags = [];
-            userFileTags = userFiles[i]["tags"];
-            //console.log(userFileTags);
+                //console.log("Comparing " + selectedTags + " AND " + userFileTags);
 
-            //console.log("Comparing " + selectedTags + " AND " + userFileTags);
+                if(compareArrays(userFileTags, selectedTags)){
+                    foundFiles.push(userFiles[i]);
+                    console.log("Found file: " + userFiles[i]["filename"]);
+                }
 
-            if(compareArrays(userFileTags, selectedTags)){
-                foundFiles.push(userFiles[i]);
-                console.log("Found file: " + userFiles[i]["filename"]);
+                // if(selectedTags.some(r=> userFileTags.includes(r))){
+                //     if(compareArrays(userFileTags, selectedTags)){
+                //         foundFiles.push(userFiles[i]);
+                //         console.log("Found file: " + userFiles[i]["filename"]);
+                //     }
+                //     // foundFiles.push(userFiles[i]);
+                //     // console.log("Found file: " + userFiles[i]["filename"]);
+                // }
             }
+            appendFoundFiles(foundFiles);
         }
+
+    }
+
+    function appendFoundFiles(foundFiles){
+        for(var i=0;i<foundFiles.length;i++){
+            var content = foundFiles[i]["content"];
+            var filename = foundFiles[i]["filename"];
+            var filetype = foundFiles[i]["filetype"];
+            var detail = foundFiles[i]["detail"];
+            var dateCreated = foundFiles[i]["dateCreated"];
+
+            if(filetype === "image"){
+                $(".recentFiles .file-items-wrapper").append($('<div class="file-item">' + `<article><img src="${content} "/>` + '<footer><h2>' + filename + '</h2><b><p>' + detail + '</p></b><p>' + dateCreated + '</p></article></div>').attr('src', content));
+            } else if(filetype === "audio"){
+                $(".recentFiles .file-items-wrapper").append($('<div class="file-item">' + `<article><img style="height: 60px" src="../images/mic.svg"/>` + '<footer><h2>' + filename + '</h2><b><p>' + detail + '</p></b><p>' + dateCreated + '</p></article></div>').attr('src', content));
+            } else if(filetype === "video"){
+                $(".recentFiles .file-items-wrapper").append($('<div class="file-item">' + `<article><img style="height: 60px" src="../images/video.svg"/>` + '<footer><h2>' + filename + '</h2><b><p>' + detail + '</p></b><p>' + dateCreated + '</p></article></div>').attr('src', content));
+            } else if(filetype === "text"){
+                $(".recentFiles .file-items-wrapper").append($('<div class="file-item">' + `<article><img style="height: 60px" src="../images/notition.svg"/>` + '<footer><h2>' + filename + '</h2><b><p>' + detail + '</p></b><p>' + dateCreated + '</p></article></div>').attr('src', content));
+            }
+
+        }
+
     }
 
     function getUserTags(uid) {
-        var selectedTags = [];
+
         // Create a reference to the cities collection
         var userRef = db.collection("user-tags");
 
@@ -110,26 +153,24 @@ $(function () {
             }
 
 
+            //https://stackoverflow.com/questions/14882751/click-toggle-with-jquery-javascript
             $(".tag-item").on("click", function () {
 
                 //console.log($(this).attr("name"));
                 var selectedTag = $(this).attr("name");
 
-                // retrieve current state, initially undefined
                 var state = $(this).data('state');
 
-                // toggle the state - first click will make this "true"
                 state = !state;
 
-                // do your stuff
                 if (state) {
-                    // do this (1st click, 3rd click, etc)
+                    // toggle on
                     selectedTags.push(selectedTag);
                     console.log("Selected: " + selectedTag);
                     $(this).find("p").css({"border": "2px solid #0364e8", "box-sizing": "border-box"});
 
                 } else {
-
+                    //toggle off
                     //Remove specific item from array
                     //http://www.jquerybyexample.net/2012/02/remove-item-from-array-using-jquery.html
                     selectedTags.splice($.inArray(selectedTag, selectedTags),1);
@@ -137,16 +178,12 @@ $(function () {
                     $(this).find("p").css("border", "0px");
 
                 }
-
-                // put the state back
                 $(this).data('state', state);
                 searchForFiles(selectedTags);
                 console.log(selectedTags);
 
             });
         });
-
-
     }
 
     //Gets user stories
@@ -207,18 +244,27 @@ $(function () {
         var query = userRef.where("userUid", "==", uid);
         //console.log(query);
 
-        query.limit(5).get().then(function (querySnapshot) {
+        query.get().then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
                 var data = doc.data();
                 var content = data["content"];
                 var filename = data["filename"];
+                var filetype = data["filetype"];
                 var detail = data["detail"];
-                var dataCreated = data["dataCreated"];
+                var dateCreated = data["dateCreated"];
                 //console.log(content);
 
                 userFiles.push(data);
 
-                $(".recentFiles").append($('<div class="file-item">' + `<article><img src="${content} "/>` + '<footer><h2>' + filename + '</h2><b><p>' + detail + '</p></b><p>' + dataCreated + '</p></article></div>').attr('src', content));
+                if(filetype === "image"){
+                    $(".recentFiles .file-items-wrapper").append($('<div class="file-item">' + `<article><img src="${content} "/>` + '<footer><h2>' + filename + '</h2><b><p>' + detail + '</p></b><p>' + dateCreated + '</p></article></div>').attr('src', content));
+                } else if(filetype === "audio"){
+                    $(".recentFiles .file-items-wrapper").append($('<div class="file-item">' + `<article><img style="height: 60px" src="../images/mic.svg"/>` + '<footer><h2>' + filename + '</h2><b><p>' + detail + '</p></b><p>' + dateCreated + '</p></article></div>').attr('src', content));
+                } else if(filetype === "video"){
+                    $(".recentFiles .file-items-wrapper").append($('<div class="file-item">' + `<article><img style="height: 60px" src="../images/video.svg"/>` + '<footer><h2>' + filename + '</h2><b><p>' + detail + '</p></b><p>' + dateCreated + '</p></article></div>').attr('src', content));
+                } else if(filetype === "text"){
+                    $(".recentFiles .file-items-wrapper").append($('<div class="file-item">' + `<article><img style="height: 60px" src="../images/notition.svg"/>` + '<footer><h2>' + filename + '</h2><b><p>' + detail + '</p></b><p>' + dateCreated + '</p></article></div>').attr('src', content));
+                }
 
             });
         });
