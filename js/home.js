@@ -31,7 +31,7 @@ $(function () {
                     filteredTags.push(foundTag);
                     $(".tags").css("display", "none");
 
-                    $(".searchedTags").append('<a class="tag-item" name="' + foundTag["name"] + ' " href="#"><p>' + foundTag["name"] + " " + '</p></a>');
+                    $(".searchedTags").append('<a class="tag-item" name="' + foundTag["name"] + ' " href="#"><p>' + foundTag["name"] + "  " + '</p></a>');
 
                 }
             }
@@ -40,7 +40,7 @@ $(function () {
                 searchText.value = $(this).attr('name');
             });
 
-            searchForFiles(searchText.value);
+            //searchForFiles(searchText.value);
         }
 
 
@@ -70,41 +70,46 @@ $(function () {
     }
 
     //search functie op homepagina
-    function searchForFiles(searchText) {
+    function searchForFiles(selectedTags) {
         var filteredTags = [];
         var foundFiles = [];
-        var tagsRef = db.collection("user-tags");
 
-        var query = tagsRef.where("userUid", "==", uid);
+        // var tagsRef = db.collection("user-tags");
+        //
+        // var query = tagsRef.where("userUid", "==", uid);
+        //
+        // query.get().then(function (querySnapshot) {
+        //     querySnapshot.forEach(function (doc) {
+        //         var data = doc.data();
+        //         //console.log(data);
+        //
+        //         for(var i=0; i<selectedTags.length;i++) {
+        //
+        //         }
+        //         // if(data["name"] == $.trim(searchText)){
+        //         //     filteredTags.push(doc.id);
+        //         // }
+        //     });
 
-        query.get().then(function (querySnapshot) {
-            querySnapshot.forEach(function (doc) {
-                var data = doc.data();
-                //console.log(data);
 
-                if(data["name"] == $.trim(searchText)){
-                    filteredTags.push(doc.id);
-                }
-            });
-
-            console.log(filteredTags);
+            //console.log(filteredTags);
             for(var i=0; i<userFiles.length;i++){
                 var userFileTags = [];
                 userFileTags = userFiles[i]["tags"];
-                console.log(userFileTags);
+                //console.log(userFileTags);
 
-                console.log("Comparing " + filteredTags + " AND " + userFileTags);
+                //console.log("Comparing " + selectedTags + " AND " + userFileTags);
 
-                if(compareArrays(userFileTags, filteredTags)){
+                if(compareArrays(userFileTags, selectedTags)){
                     foundFiles.push(userFiles[i]);
-                    console.log(userFiles[i]["filename"]);
+                    console.log("Found file: " + userFiles[i]["filename"]);
                 }
             }
-        });
+        //});
     }
 
     function getUserTags(uid) {
-
+        var selectedTags = [];
         // Create a reference to the cities collection
         var userRef = db.collection("user-tags");
 
@@ -117,7 +122,7 @@ $(function () {
                 var data = doc.data();
                 tagsArray.push(data);
 
-                section.append('<a href="#" class="tag-item"><p>' + data["name"] + " " + '</p></a>')
+                section.append(`<a href="#" class="tag-item" name="${doc.id}"><p>${data["name"]} </p></a>`)
             });
             console.log(tagsArray)
 
@@ -127,8 +132,34 @@ $(function () {
 
 
             $(".tag-item").on("click", function () {
-                //console.log("test");
-                console.log(filteredTags[i]);
+
+                //console.log($(this).attr("name"));
+                var selectedTag = $(this).attr("name");
+
+                // retrieve current state, initially undefined
+                var state = $(this).data('state');
+
+                // toggle the state - first click will make this "true"
+                state = !state;
+
+                // do your stuff
+                if (state) {
+                    // do this (1st click, 3rd click, etc)
+                    selectedTags.push(selectedTag);
+                    console.log("Selected: " + selectedTag);
+                } else {
+
+                    //Remove specific item from array
+                    //http://www.jquerybyexample.net/2012/02/remove-item-from-array-using-jquery.html
+                    selectedTags.splice($.inArray(selectedTag, selectedTags),1);
+                    console.log("Unselected: " + selectedTag);
+                }
+
+                // put the state back
+                $(this).data('state', state);
+
+                searchForFiles(selectedTags);
+                console.log(selectedTags);
 
             });
         });
