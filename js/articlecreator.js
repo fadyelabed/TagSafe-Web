@@ -30,18 +30,47 @@ $(function () {
         } else {
             var foundTag;
             for (var i = 0; i < tagsArray.length; i++) {
-                if (tagsArray[i]["name"].includes(searchText.value)) {
+                if ((tagsArray[i]["name"]).toLowerCase().includes(searchText.value.toLowerCase())) {
                     foundTag = tagsArray[i];
                     //console.log(foundTag);
                     //console.log("search succes");
                     filteredTags.push(foundTag);
                     $(".tags").css("display", "none");
 
-                    $(".searchedTags").append('<a class="tag-item" name="' + foundTag["name"] + ' " href="#"><p>' + foundTag["name"] + "  " + '</p></a>');
+                    $(".searchedTags").append('<a class="tag-item" name="' + foundTag["id"] + '" href="#"><p>' + foundTag["name"] + "  " + '</p></a>');
 
                 }
             }
             $(".tag-item").on("click", function (e) {
+
+                //console.log($(this).attr("name"));
+                var selectedTag = $(this).attr("name");
+
+                var state = $(this).data('state');
+
+                state = !state;
+
+                if (state) {
+                    // toggle on
+                    selectedTags.push(selectedTag);
+                    console.log("Selected: " + selectedTag);
+                    $(this).find("p").css({"border": "2px solid #0364e8", "box-sizing": "border-box"});
+
+                } else {
+                    //toggle off
+                    //Remove specific item from array
+                    //http://www.jquerybyexample.net/2012/02/remove-item-from-array-using-jquery.html
+                    selectedTags.splice($.inArray(selectedTag, selectedTags),1);
+                    console.log("Unselected: " + selectedTag);
+                    $(this).find("p").css("border", "0px");
+
+                }
+                $(this).data('state', state);
+                searchForFiles(selectedTags);
+                console.log(selectedTags);
+
+
+
                 console.log($(this).attr('name'));
                 //searchText.value = $(this).attr('name');
                 searchForFiles(selectedTags);
@@ -123,7 +152,7 @@ $(function () {
                 $(".recentFiles .file-items-wrapper").append($('<div class="file-item">' + `<article><img style="height: 60px" src="../images/mic.svg"/>` + '<footer><h2>' + filename + '</h2><b><p>' + detail + '</p></b><p>' + dateCreated + '</p></article></div>').attr('src', content));
             } else if(filetype === "video"){
                 $(".recentFiles .file-items-wrapper").append($('<div class="file-item">' + `<article><img style="height: 60px" src="../images/video.svg"/>` + '<footer><h2>' + filename + '</h2><b><p>' + detail + '</p></b><p>' + dateCreated + '</p></article></div>').attr('src', content));
-            } else if(filetype === "text"){
+            } else if(filetype === "note"){
                 $(".recentFiles .file-items-wrapper").append($('<div class="file-item">' + `<article><img style="height: 60px" src="../images/notition.svg"/>` + '<footer><h2>' + filename + '</h2><b><p>' + detail + '</p></b><p>' + dateCreated + '</p></article></div>').attr('src', content));
             }
 
@@ -142,6 +171,7 @@ $(function () {
         query.limit(8).get().then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
                 var data = doc.data();
+                data["id"] = doc.id;
                 tagsArray.push(data);
 
                 section.append(`<a href="#" class="tag-item" name="${doc.id}"><p>${data["name"]} </p></a>`)
@@ -270,7 +300,7 @@ $(function () {
                     $(".recentFiles .file-items-wrapper").append($(`<div class="file-item" id="${doc.id}">` + `<article><img style="height: 60px" src="../images/mic.svg"/>` + '<footer><h2>' + filename + '</h2><b><p>' + detail + '</p></b><p>' + dateCreated + '</p></article></div>').attr('src', content));
                 } else if(filetype === "video"){
                     $(".recentFiles .file-items-wrapper").append($(`<div class="file-item" id="${doc.id}">` + `<article><img style="height: 60px" src="../images/video.svg"/>` + '<footer><h2>' + filename + '</h2><b><p>' + detail + '</p></b><p>' + dateCreated + '</p></article></div>').attr('src', content));
-                } else if(filetype === "text"){
+                } else if(filetype === "note"){
                     $(".recentFiles .file-items-wrapper").append($(`<div class="file-item" id="${doc.id}">` + `<article><img style="height: 60px" src="../images/notition.svg"/>` + '<footer><h2>' + filename + '</h2><b><p>' + detail + '</p></b><p>' + dateCreated + '</p></article></div>').attr('src', content));
                 }
 
@@ -288,7 +318,7 @@ $(function () {
                         $(this).css("border", "2px solid var(--blauw)")
                         $(".addContent").fadeIn(200);
 
-                        appendFileToEditor(doc.id, content);
+                        appendFileToEditor(doc.id, content, filetype);
                     }
 
                 });
@@ -329,24 +359,35 @@ $(function () {
 
     }
 
-    function appendFileToEditor(id, content) {
+    function appendFileToEditor(id, content, filetype) {
 
         $(".addContent").click(function () {
             $(".addContent").fadeOut(200);
 
             if ($(`.texteditorSplit figure div .${id}`).length == 0) {
-                $(".texteditorSplit figure").append(`<div class="${id}"><img src="${content} "/></div>`);
+
+                if(filetype === "image"){
+                    $(".texteditorSplit figure").append(`<div class="${id}"><img src="${content} "/></div>`);
+                } else if(filetype === "audio"){
+                    $(".texteditorSplit figure").append(`<div class="${id}"><audio controls preload="none" style="width:480px;"><source src="${content}" type="audio/mp4" /></audio></div>`);
+                } else if(filetype === "video"){
+                    $(".texteditorSplit figure").append(`<div class="${id}"><video width="100px" height="100px"><source src="${content}" type="video/mp4"></video></div>`);
+                } else if(filetype === "note"){
+                    $(".texteditorSplit textarea").val($(".texteditorSplit textarea").val() + "\n" + content);
+                }
+
+
             } else {
                 console.log("already exists");
             }
 
 
-            removeImagefromEditor(id, content);
+            removeImagefromEditor(id);
 
         });
     }
 
-    function removeImagefromEditor(id, content) {
+    function removeImagefromEditor(id) {
         $(`.${id}`).click(function () {
             $(this).remove();
             //$(".texteditorSplit figure img").remove();

@@ -73,7 +73,6 @@ window.addEventListener("load", function () {
     }
     
     function printpage() {
-        alert("test");
         //Get the print button and put it into a variable
 //        var nav = document.getElementById("nav-collapsed");
 //        var save = document.getElementById("save");

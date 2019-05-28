@@ -15,31 +15,66 @@ $(function () {
        // Searchbar
         $(".searchbar").submit(function (e) {
             e.preventDefault();
-            //console.log("test");
+
 
             var searchText = document.getElementById("searchText");
-            console.log(searchText.value);
+            //console.log(searchText.value);
 
             if (searchText.value == "") {
-                console.log("leeg");
+                //console.log("leeg");
+
                 $(".tags").css("display", "initial");
                 $(".searchedTags").empty();
+                //getUserTags(uid);
             } else {
+
                 var foundTag;
                 for (var i = 0; i < tagsArray.length; i++) {
-                    if (tagsArray[i]["name"].includes(searchText.value)) {
+                    console.log(tagsArray[i]["name"]);
+                    if ((tagsArray[i]["name"]).toLowerCase().includes(searchText.value.toLowerCase())) {
                         foundTag = tagsArray[i];
-                        //console.log(foundTag);
-                        //console.log("search succes");
-                        filteredTags.push(foundTag);
-                        $(".tags").css("display", "none");
+                        console.log(foundTag);
+                        // console.log("search succes");
+                        if($.inArray(foundTag, filteredTags) < 0){
+                            filteredTags.push(foundTag);
+                            $(".tags").css("display", "none");
 
-                        $(".searchedTags").append('<a class="tag-item" name="' + foundTag["name"] + ' " href="#"><p>' + foundTag["name"] + "  " + '</p></a>');
+                            $(".searchedTags").append('<a class="tag-item" name="' + foundTag["id"] + '" href="#"><p>' + foundTag["name"] + "  " + '</p></a>');
+
+                        }
+
 
                     }
                 }
                 $(".tag-item").on("click", function (e) {
-                    console.log($(this).attr('name'));
+
+                    var selectedTag = $(this).attr("name");
+
+                    var state = $(this).data('state');
+
+                    state = !state;
+
+                    if (state) {
+                        // toggle on
+                        if($.inArray(selectedTag, selectedTags) < 0){
+                            selectedTags.push(selectedTag);
+                            console.log("Selected: " + selectedTag);
+                            $(this).find("p").css({"border": "2px solid #0364e8", "box-sizing": "border-box"});
+                        } else{
+                            $(this).find("p").css("border", "0px");
+                        }
+                    } else {
+                        //toggle off
+                        //Remove specific item from array
+                        //http://www.jquerybyexample.net/2012/02/remove-item-from-array-using-jquery.html
+                        selectedTags.splice($.inArray(selectedTag, selectedTags),1);
+                        console.log("Unselected: " + selectedTag);
+                        $(this).find("p").css("border", "0px");
+
+                    }
+                    $(this).data('state', state);
+                    searchForFiles(selectedTags);
+                    console.log(selectedTags);
                     //searchText.value = $(this).attr('name');
                     searchForFiles(selectedTags);
                 });
@@ -120,7 +155,7 @@ $(function () {
                 $(".recentFiles .file-items-wrapper").append($('<div class="file-item">' + `<article><img style="height: 60px" src="../images/mic.svg"/>` + '<footer><h2>' + filename + '</h2><b><p>' + detail + '</p></b><p>' + dateCreated + '</p></article></div>').attr('src', content));
             } else if(filetype === "video"){
                 $(".recentFiles .file-items-wrapper").append($('<div class="file-item">' + `<article><img style="height: 60px" src="../images/video.svg"/>` + '<footer><h2>' + filename + '</h2><b><p>' + detail + '</p></b><p>' + dateCreated + '</p></article></div>').attr('src', content));
-            } else if(filetype === "text"){
+            } else if(filetype === "note"){
                 $(".recentFiles .file-items-wrapper").append($('<div class="file-item">' + `<article><img style="height: 60px" src="../images/notition.svg"/>` + '<footer><h2>' + filename + '</h2><b><p>' + detail + '</p></b><p>' + dateCreated + '</p></article></div>').attr('src', content));
             }
 
@@ -139,15 +174,16 @@ $(function () {
         query.limit(8).get().then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
                 var data = doc.data();
+                data["id"] = doc.id;
                 tagsArray.push(data);
 
                 section.append(`<a href="#" class="tag-item" name="${doc.id}"><p>${data["name"]} </p></a>`)
             });
-            console.log(tagsArray)
+            //console.log(tagsArray)
 
-            for (var i = 0; i < tagsArray.length; i++) {
-                console.log(tagsArray[i]["name"]);
-            }
+            // for (var i = 0; i < tagsArray.length; i++) {
+            //     console.log(tagsArray[i]["name"]);
+            // }
 
 
             //https://stackoverflow.com/questions/14882751/click-toggle-with-jquery-javascript
@@ -185,7 +221,7 @@ $(function () {
 
     //Gets user stories
     function getUserStories(uid) {
-        console.log("inside");
+        //console.log("inside");
         var storiesRef = db.collection("user-stories");
 
         var query = storiesRef.where("userUid", "==", uid);
@@ -199,8 +235,8 @@ $(function () {
                 //console.log(data["title"]);
                 //console.log(files);
 
-                $(".stories").append('<a href="#"><div class="story-item">.<article><h2>' + data["title"] + "</h2><p>" + data["dateCreated"] + '</p></article></div></a>');
-                $(".story-item").css("background-image", "url('" + data["thumbnail"] + "')");
+                $(".stories").append(`<a href="#"><div class="story-item" style="background-image: url('${thumb}')"><article><h2>${data["title"]}</h2><p>${data["dateCreated"]}</p></article></div></a>`);
+                //$(".story-item").css("background-image", "url('" + data["thumbnail"] + "')");
                 //console.log(thumb);
 
 
@@ -259,7 +295,7 @@ $(function () {
                     $(".recentFiles .file-items-wrapper").append($('<div class="file-item">' + `<article><img style="height: 60px" src="../images/mic.svg"/>` + '<footer><h2>' + filename + '</h2><b><p>' + detail + '</p></b><p>' + dateCreated + '</p></article></div>').attr('src', content));
                 } else if(filetype === "video"){
                     $(".recentFiles .file-items-wrapper").append($('<div class="file-item">' + `<article><img style="height: 60px" src="../images/video.svg"/>` + '<footer><h2>' + filename + '</h2><b><p>' + detail + '</p></b><p>' + dateCreated + '</p></article></div>').attr('src', content));
-                } else if(filetype === "text"){
+                } else if(filetype === "note"){
                     $(".recentFiles .file-items-wrapper").append($('<div class="file-item">' + `<article><img style="height: 60px" src="../images/notition.svg"/>` + '<footer><h2>' + filename + '</h2><b><p>' + detail + '</p></b><p>' + dateCreated + '</p></article></div>').attr('src', content));
                 }
 
