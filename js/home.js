@@ -64,11 +64,15 @@ $(function () {
 
     });
 
-
+    //http://jsfiddle.net/Vitzkrieg/SdkRZ/
+    function compareArrays(arr1, arr2) {
+        return $(arr1).not(arr2).length == 0 && $(arr2).not(arr1).length == 0
+    }
 
     //search functie op homepagina
     function searchForFiles(searchText) {
-        var matchingTags = [];
+        var filteredTags = [];
+        var foundFiles = [];
         var tagsRef = db.collection("user-tags");
 
         var query = tagsRef.where("userUid", "==", uid);
@@ -78,22 +82,23 @@ $(function () {
                 var data = doc.data();
                 //console.log(data);
 
-                if(data["name"].includes(searchText)){
-                    matchingTags.push(doc.id);
+                if(data["name"] == $.trim(searchText)){
+                    filteredTags.push(doc.id);
                 }
             });
 
-            //console.log(matchingTags);
+            console.log(filteredTags);
             for(var i=0; i<userFiles.length;i++){
                 var userFileTags = [];
                 userFileTags = userFiles[i]["tags"];
-                //
-                // if(matchingTags.intersect userFileTags){
-                //     console.log("match");
-                // }
-                // var is_same = (matchingTags.length == userFileTags.length) && matchingTags.every(function(element, index) {
-                //     console.log(element === userFileTags[index]);
-                // });
+                console.log(userFileTags);
+
+                console.log("Comparing " + filteredTags + " AND " + userFileTags);
+
+                if(compareArrays(userFileTags, filteredTags)){
+                    foundFiles.push(userFiles[i]);
+                    console.log(userFiles[i]["filename"]);
+                }
             }
         });
     }
