@@ -6,6 +6,7 @@ $(function () {
     var tagsRef = db.collection("tags");
     var tagsArray = [];
     var filteredTags = [];
+    var userFiles = [];
     var uid;
 
     // Searchbar 
@@ -25,12 +26,12 @@ $(function () {
             for (var i = 0; i < tagsArray.length; i++) {
                 if (tagsArray[i]["name"].includes(searchText.value)) {
                     foundTag = tagsArray[i];
-                    console.log(foundTag);
+                    //console.log(foundTag);
                     //console.log("search succes");
                     filteredTags.push(foundTag);
                     $(".tags").css("display", "none");
 
-                    $(".searchedTags").append('<a class="tag-item" name="' + foundTag["name"] + ' " href="#"><p>' + foundTag["name"] + " " + '</p></a>');
+                    $(".searchedTags").append('<a class="tag-item" name="' + foundTag["name"] + ' " href="#"><p>' + foundTag["name"] + "  " + '</p></a>');
 
                 }
             }
@@ -38,7 +39,10 @@ $(function () {
                 console.log($(this).attr('name'));
                 searchText.value = $(this).attr('name');
             });
+
+            //searchForFiles(searchText.value);
         }
+
 
     });
 
@@ -60,21 +64,31 @@ $(function () {
 
     });
 
-
+    //http://jsfiddle.net/Vitzkrieg/SdkRZ/
+    function compareArrays(arr1, arr2) {
+        return $(arr1).not(arr2).length == 0 && $(arr2).not(arr1).length == 0
+    }
 
     //search functie op homepagina
-    function searchForTags() {
+    function searchForFiles(selectedTags) {
+        var foundFiles = [];
 
-        var searchText = document.getElementById("searchText");
-        searchText.addEventListener("click", function () {
+        for(var i=0; i<userFiles.length;i++){
+            var userFileTags = [];
+            userFileTags = userFiles[i]["tags"];
+            //console.log(userFileTags);
 
-        });
-        console.log(searchText);
+            //console.log("Comparing " + selectedTags + " AND " + userFileTags);
 
+            if(compareArrays(userFileTags, selectedTags)){
+                foundFiles.push(userFiles[i]);
+                console.log("Found file: " + userFiles[i]["filename"]);
+            }
+        }
     }
 
     function getUserTags(uid) {
-
+        var selectedTags = [];
         // Create a reference to the cities collection
         var userRef = db.collection("user-tags");
 
@@ -87,7 +101,7 @@ $(function () {
                 var data = doc.data();
                 tagsArray.push(data);
 
-                section.append('<a href="#" class="tag-item"><p>' + data["name"] + " " + '</p></a>')
+                section.append(`<a href="#" class="tag-item" name="${doc.id}"><p>${data["name"]} </p></a>`)
             });
             console.log(tagsArray)
 
@@ -97,8 +111,37 @@ $(function () {
 
 
             $(".tag-item").on("click", function () {
-                //console.log("test");
-                console.log(filteredTags[i]);
+
+                //console.log($(this).attr("name"));
+                var selectedTag = $(this).attr("name");
+
+                // retrieve current state, initially undefined
+                var state = $(this).data('state');
+
+                // toggle the state - first click will make this "true"
+                state = !state;
+
+                // do your stuff
+                if (state) {
+                    // do this (1st click, 3rd click, etc)
+                    selectedTags.push(selectedTag);
+                    console.log("Selected: " + selectedTag);
+                    $(this).find("p").css({"border": "2px solid #0364e8", "box-sizing": "border-box"});
+
+                } else {
+
+                    //Remove specific item from array
+                    //http://www.jquerybyexample.net/2012/02/remove-item-from-array-using-jquery.html
+                    selectedTags.splice($.inArray(selectedTag, selectedTags),1);
+                    console.log("Unselected: " + selectedTag);
+                    $(this).find("p").css("border", "0px");
+
+                }
+
+                // put the state back
+                $(this).data('state', state);
+                searchForFiles(selectedTags);
+                console.log(selectedTags);
 
             });
         });
@@ -172,6 +215,8 @@ $(function () {
                 var detail = data["detail"];
                 var dataCreated = data["dataCreated"];
                 //console.log(content);
+
+                userFiles.push(data);
 
                 $(".recentFiles").append($('<div class="file-item">' + `<article><img src="${content} "/>` + '<footer><h2>' + filename + '</h2><b><p>' + detail + '</p></b><p>' + dataCreated + '</p></article></div>').attr('src', content));
 
