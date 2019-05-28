@@ -6,6 +6,7 @@ $(function () {
     var tagsRef = db.collection("tags");
     var tagsArray = [];
     var filteredTags = [];
+    var userFiles = [];
     var uid;
 
     // Searchbar 
@@ -25,7 +26,7 @@ $(function () {
             for (var i = 0; i < tagsArray.length; i++) {
                 if (tagsArray[i]["name"].includes(searchText.value)) {
                     foundTag = tagsArray[i];
-                    console.log(foundTag);
+                    //console.log(foundTag);
                     //console.log("search succes");
                     filteredTags.push(foundTag);
                     $(".tags").css("display", "none");
@@ -38,7 +39,10 @@ $(function () {
                 console.log($(this).attr('name'));
                 searchText.value = $(this).attr('name');
             });
+
+            searchForFiles(searchText.value);
         }
+
 
     });
 
@@ -63,14 +67,35 @@ $(function () {
 
 
     //search functie op homepagina
-    function searchForTags() {
+    function searchForFiles(searchText) {
+        var matchingTags = [];
+        var tagsRef = db.collection("user-tags");
 
-        var searchText = document.getElementById("searchText");
-        searchText.addEventListener("click", function () {
+        var query = tagsRef.where("userUid", "==", uid);
 
+        query.get().then(function (querySnapshot) {
+            querySnapshot.forEach(function (doc) {
+                var data = doc.data();
+                //console.log(data);
+
+                if(data["name"].includes(searchText)){
+                    matchingTags.push(doc.id);
+                }
+            });
+
+            //console.log(matchingTags);
+            for(var i=0; i<userFiles.length;i++){
+                var userFileTags = [];
+                userFileTags = userFiles[i]["tags"];
+                //
+                // if(matchingTags.intersect userFileTags){
+                //     console.log("match");
+                // }
+                // var is_same = (matchingTags.length == userFileTags.length) && matchingTags.every(function(element, index) {
+                //     console.log(element === userFileTags[index]);
+                // });
+            }
         });
-        console.log(searchText);
-
     }
 
     function getUserTags(uid) {
@@ -172,6 +197,8 @@ $(function () {
                 var detail = data["detail"];
                 var dataCreated = data["dataCreated"];
                 //console.log(content);
+
+                userFiles.push(data);
 
                 $(".recentFiles").append($('<div class="file-item">' + `<article><img src="${content} "/>` + '<footer><h2>' + filename + '</h2><b><p>' + detail + '</p></b><p>' + dataCreated + '</p></article></div>').attr('src', content));
 
