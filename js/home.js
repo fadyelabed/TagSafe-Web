@@ -71,41 +71,20 @@ $(function () {
 
     //search functie op homepagina
     function searchForFiles(selectedTags) {
-        var filteredTags = [];
         var foundFiles = [];
 
-        // var tagsRef = db.collection("user-tags");
-        //
-        // var query = tagsRef.where("userUid", "==", uid);
-        //
-        // query.get().then(function (querySnapshot) {
-        //     querySnapshot.forEach(function (doc) {
-        //         var data = doc.data();
-        //         //console.log(data);
-        //
-        //         for(var i=0; i<selectedTags.length;i++) {
-        //
-        //         }
-        //         // if(data["name"] == $.trim(searchText)){
-        //         //     filteredTags.push(doc.id);
-        //         // }
-        //     });
+        for(var i=0; i<userFiles.length;i++){
+            var userFileTags = [];
+            userFileTags = userFiles[i]["tags"];
+            //console.log(userFileTags);
 
+            //console.log("Comparing " + selectedTags + " AND " + userFileTags);
 
-            //console.log(filteredTags);
-            for(var i=0; i<userFiles.length;i++){
-                var userFileTags = [];
-                userFileTags = userFiles[i]["tags"];
-                //console.log(userFileTags);
-
-                //console.log("Comparing " + selectedTags + " AND " + userFileTags);
-
-                if(compareArrays(userFileTags, selectedTags)){
-                    foundFiles.push(userFiles[i]);
-                    console.log("Found file: " + userFiles[i]["filename"]);
-                }
+            if(compareArrays(userFileTags, selectedTags)){
+                foundFiles.push(userFiles[i]);
+                console.log("Found file: " + userFiles[i]["filename"]);
             }
-        //});
+        }
     }
 
     function getUserTags(uid) {
