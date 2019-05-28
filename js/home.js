@@ -12,42 +12,40 @@ $(function () {
     var foundFiles = [];
     var selectedTags = [];
 
-    // Searchbar 
-    $(".searchbar").submit(function (e) {
-        e.preventDefault();
-        //console.log("test");
+       // Searchbar
+        $(".searchbar").submit(function (e) {
+            e.preventDefault();
+            //console.log("test");
 
-        var searchText = document.getElementById("searchText");
-        console.log(searchText.value);
+            var searchText = document.getElementById("searchText");
+            console.log(searchText.value);
 
-        if (searchText.value == "") {
-            console.log("leeg");
-            $(".tags").css("display", "initial");
-            $(".searchedTags").empty();
-        } else {
-            var foundTag;
-            for (var i = 0; i < tagsArray.length; i++) {
-                if (tagsArray[i]["name"].includes(searchText.value)) {
-                    foundTag = tagsArray[i];
-                    //console.log(foundTag);
-                    //console.log("search succes");
-                    filteredTags.push(foundTag);
-                    $(".tags").css("display", "none");
+            if (searchText.value == "") {
+                console.log("leeg");
+                $(".tags").css("display", "initial");
+                $(".searchedTags").empty();
+            } else {
+                var foundTag;
+                for (var i = 0; i < tagsArray.length; i++) {
+                    if (tagsArray[i]["name"].includes(searchText.value)) {
+                        foundTag = tagsArray[i];
+                        //console.log(foundTag);
+                        //console.log("search succes");
+                        filteredTags.push(foundTag);
+                        $(".tags").css("display", "none");
 
-                    $(".searchedTags").append('<a class="tag-item" name="' + foundTag["name"] + ' " href="#"><p>' + foundTag["name"] + "  " + '</p></a>');
+                        $(".searchedTags").append('<a class="tag-item" name="' + foundTag["name"] + ' " href="#"><p>' + foundTag["name"] + "  " + '</p></a>');
 
+                    }
                 }
+                $(".tag-item").on("click", function (e) {
+                    console.log($(this).attr('name'));
+                    //searchText.value = $(this).attr('name');
+                    searchForFiles(selectedTags);
+                });
+
+
             }
-            $(".tag-item").on("click", function (e) {
-                console.log($(this).attr('name'));
-                //searchText.value = $(this).attr('name');
-                searchForFiles(selectedTags);
-            });
-
-
-        }
-
-
     });
 
     // Bij elke login van een ander user verandert de data naar zijn id.
@@ -127,7 +125,6 @@ $(function () {
             }
 
         }
-
     }
 
     function getUserTags(uid) {
