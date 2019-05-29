@@ -13,6 +13,21 @@ body {
     --paars: #7457ED;
     --roos: #FF4EC8;
 }
+section::-webkit-scrollbar-thumb {
+    background-color: #0364e8;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
+section::-webkit-scrollbar {
+    width: 0.48em;
+
+}
+
+section::-webkit-scrollbar-track {
+    background: #F2F2F2;
+}
 
 a {
     color: inherit;
@@ -66,6 +81,7 @@ main {}
     margin-left: 6%;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
+    padding-bottom: 0;
 }
 
 .fileViewer .wrapping-content {
@@ -608,7 +624,10 @@ main h2 {
     /* height: 10rem; */
     position: relative;
 }
+.file-items-wrapper{
 
+    /* overflow-y: scroll; */
+}
 .recentFiles h2 {}
 
 .recentFiles select {
@@ -647,7 +666,7 @@ main h2 {
 .recentFiles .wrapping-content {}
 
 /*.recentFiles .file-item:first-child {*/
-    /*margin-left: 0;*/
+/*margin-left: 0;*/
 /*}*/
 
 .fileViewer .tags span:after {
@@ -680,6 +699,9 @@ main h2 {
 
 .fileViewer .recentFiles {
     padding-top: 0;
+    overflow-y: scroll;
+    clear: both;
+    height: 54vh;
 }
 
 .fileViewer section {
@@ -873,7 +895,7 @@ main h2 {
 .texteditorSplit textarea {
     width: 100% !important;
     border: none;
-    height: 49%;
+    height: 42vh;
     padding: 2% 0;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
@@ -952,6 +974,7 @@ main h2 {
     box-sizing: border-box;
     /* overflow: scroll; */
     height: 9rem;
+    clear: both;
     overflow-y: scroll;
 }
 
@@ -970,11 +993,12 @@ main h2 {
     left: 52%;
     -webkit-box-shadow: 0px 1px 6px #00000042;
     box-shadow: 0px 1px 6px #00000042;
-    font-size: 1.2em;
+    font-size: 1.8em;
+    font-weight: 700;
     /* right: 0; */
     /* margin-left: auto; */
     /* margin-right: auto; */
-    bottom: 22%;
+    bottom: 0%;
     width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
@@ -1037,7 +1061,7 @@ main h2 {
 div#textEditor {
     margin: 0 auto;
     width: 100%;
-    height: 300px;
+    /* height: 300px; */
 }
 
 div#theRibbon {
@@ -1063,7 +1087,7 @@ iframe#theWYSIWYG {
 
 div#theRibbon > button {
     color: white;
-    ;
+;
     border: none;
     outline: none;
     background-color: transparent;
@@ -1071,12 +1095,12 @@ div#theRibbon > button {
 }
 
 div#theRibbon > button:hover {
-    background-color: rgb(5, 1, body {
-    line-height: 1.2;
-    text-align: center;
-    background-color: #F8F8F8;
-    font-family: 'Calibre Test';
-}
+background-color: rgb(5, 1, body {
+                                line-height: 1.2;
+                                text-align: center;
+                                background-color: #F8F8F8;
+                                font-family: 'Calibre Test';
+                            }
 
 :root {
     --blauw: #0364E8;
@@ -2139,7 +2163,7 @@ iframe#theWYSIWYG {
 
 div#theRibbon > button {
     color: white;
-    ;
+;
     border: none;
     outline: none;
     background-color: transparent;
@@ -2208,7 +2232,7 @@ footer p {
     text-align: right;
 }
 255);
-    transition: all 0.3s linear 0s;
+transition: all 0.3s linear 0s;
 }
 
 input [type="color"] {

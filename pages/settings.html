@@ -17,6 +17,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="../js/main.js"></script>
+<script src="../js/settings.js"></script>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
 
@@ -61,7 +62,7 @@
 
                 <table>
                     <tr>
-                        <td>someone@example.com</td>
+                        <td id="userEmail">someone@example.com</td>
                         <td><a href="#">Change mail</a></td>
                     </tr>
                     <tr>
@@ -76,6 +77,12 @@
     </main>
     <footer>
     </footer>
+    <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-app.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-firestore.js"></script>
+    <script src="../js/firebase.js"></script>
 </body>
 
 </html>
