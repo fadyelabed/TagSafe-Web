@@ -1,5 +1,8 @@
 console.log("Js loaded!");
 
+//Firebase authentication
+//Consulted on 20 May 2019
+//https://firebase.google.com/docs/auth
 function login() {
     var userEmail = document.getElementById("email").value;
     var userPassword = document.getElementById("password").value;

@@ -186,6 +186,8 @@ $(function () {
             // }
 
 
+            //Click toggle with jquery javascript
+            //Consulted on 24 May 2019 via Stackoverflow
             //https://stackoverflow.com/questions/14882751/click-toggle-with-jquery-javascript
             $(".tag-item").on("click", function () {
 
@@ -205,6 +207,7 @@ $(function () {
                 } else {
                     //toggle off
                     //Remove specific item from array
+                    //Consulted on 28 May 2019 via JqueryByExample
                     //http://www.jquerybyexample.net/2012/02/remove-item-from-array-using-jquery.html
                     selectedTags.splice($.inArray(selectedTag, selectedTags),1);
                     console.log("Unselected: " + selectedTag);

@@ -98,6 +98,8 @@ $(function () {
 
     });
 
+    //Compare arrays
+    //Consulted on 28 May 2019 via JSFiddle
     //http://jsfiddle.net/Vitzkrieg/SdkRZ/
     function compareArrays(arr1, arr2) {
         return $(arr1).not(arr2).length == 0 && $(arr2).not(arr1).length == 0
@@ -201,6 +203,7 @@ $(function () {
                 } else {
                     //toggle off
                     //Remove specific item from array
+                    //Consulted on 28 May 2019 via JqueryByExample
                     //http://www.jquerybyexample.net/2012/02/remove-item-from-array-using-jquery.html
                     selectedTags.splice($.inArray(selectedTag, selectedTags),1);
                     console.log("Unselected: " + selectedTag);
