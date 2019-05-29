@@ -11,6 +11,9 @@ function login() {
         var errorCode = error.code;
         var errorMessage = error.message;
         console.log(errorMessage);
+        if(error){
+            $("#errorLogin").css("display", "block").fadeIn(500);
+        }
     });
 
     //Login methode
@@ -22,7 +25,6 @@ function login() {
 
         } else {
             console.log("no success");
-            $("#errorLogin").css("display", "block").fadeIn(500);
         }
     });
 
